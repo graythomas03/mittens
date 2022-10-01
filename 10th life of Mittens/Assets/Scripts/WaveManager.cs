@@ -27,8 +27,26 @@ public class WaveManager : MonoBehaviour
     [SerializeField][Tooltip("all possible enemy start positions")]private List<GameObject> enemySpawnPos;
     /**the maximum variation in enemy spawn positions*/
     [SerializeField][Tooltip("the max amount the enemy spawn positions can vary by")][Min(0f)]private float enemySpawnPosVar;
+    [Header("enemy fields")]
+    /**list of the current enemies*/
+    [SerializeField][Tooltip("the list of the current wave's enemies")]private List<GameObject> enemyList;
+    ///**the enemies which are currently spawned*/
+    // [SerializeField][Tooltip("the list of the spawned enemies")]private List<GameObject> spawnedEnemyList;
+    // /**the enemies which have been killed*/
+    // [SerializeField][Tooltip("the list of the dead enemies")]private List<GameObject> deadEnemyList;
+    /**the max number of zombies that can chase the player at once*/
+    [SerializeField][Min(1)]private int maxChasing = 5;
+    /**the number of enemies currently chasing the player*/
+    private List<GameObject> currentChasing;
+    
+    
+    [Header("Wave Spawning fields")]
     /**enemy spawn count*/
     [SerializeField][Tooltip("the number of enemies that spawn in the wave")]private int enemySpawnCount;
+    /**enemy spawn count wave multiplier*/
+    [SerializeField][Tooltip("the percentage that the wave spawn counts are increased by every wave")][Min(0)]private float enemySpawnIncrease = .1f;
+    /**the number of enemies to be spawned this wave*/
+    [SerializeField]private float currentWaveSpawnCount;
     /**current number of enemies that have been spawned*/
     private int enemiesSpawned;
     /**current number of enemies that have been killed*/
@@ -37,24 +55,13 @@ public class WaveManager : MonoBehaviour
     [SerializeField][Tooltip("the standard delay between enemies")]private float enemySpawnDelay;
     /**enemy spawn delay variation percentage*/
     [SerializeField][Tooltip("the maximum percentage variation on enemy spawn delays")][Range(0f,1f)]private float enemySpawnDelayVar;
+    /**enemy spawn count wave multiplier*/
+    [SerializeField][Tooltip("the percentage that the wave spawn counts are decreased by every wave")][Min(0)]private float enemySpawnDelayIncrease = .05f;
+    
     /**enemy spawn timer*/
     private float spawnTimer;
     /**current time for enemy spawn */
     private float spawnTime;
-    /**the max number of zombies that can chase the player at once*/
-    [SerializeField][Min(1)]private int maxChasing = 5;
-    /**the number of enemies currently chasing the player*/
-    private List<GameObject> currentChasing;
-
-
-    [Header("enemy fields")]
-    /**list of the current enemies*/
-    [SerializeField][Tooltip("the list of the current wave's enemies")]private List<GameObject> enemyList;
-    ///**the enemies which are currently spawned*/
-    // [SerializeField][Tooltip("the list of the spawned enemies")]private List<GameObject> spawnedEnemyList;
-    // /**the enemies which have been killed*/
-    // [SerializeField][Tooltip("the list of the dead enemies")]private List<GameObject> deadEnemyList;
-
     /**wave started */
     [SerializeField][Tooltip("whether or not the wave has started")]public bool waveStarted = false;
     /**Delay before a wave begins*/
@@ -63,6 +70,10 @@ public class WaveManager : MonoBehaviour
     private float waveTimer;
     /**current wave*/
     [SerializeField][Tooltip("the current wave")]public int currentWave = 1;
+    
+
+
+    
 
     public static WaveManager Instance
     {
@@ -146,6 +157,8 @@ public class WaveManager : MonoBehaviour
         Debug.Log("setup wave");
         waveStarted = false;
         waveTimer = WaveStartDelay;
+        currentWaveSpawnCount = (int)(enemySpawnCount * Mathf.Pow(1 + enemySpawnIncrease,currentWave - 1));
+        enemiesSpawned = 0;
     }
 
     void StartWave(){
@@ -199,17 +212,17 @@ public class WaveManager : MonoBehaviour
     }
 
     float GetSpawnTime(){
-        float result = enemySpawnDelay;
+        float result = enemySpawnDelay / (Mathf.Pow(1 + enemySpawnDelayIncrease,currentWave-1));
         result += result * Random.Range(-enemySpawnDelayVar,enemySpawnDelayVar);
         return result;
     }
 
     bool EnemiesLeftToSpawn(){
-        return enemiesSpawned < enemySpawnCount;
+        return enemiesSpawned < currentWaveSpawnCount;
     }
 
     bool EnemiesLeftAlive(){
-        return enemiesKilled < enemySpawnCount;
+        return enemiesKilled < currentWaveSpawnCount;
     }
 
     public void WinWave(){

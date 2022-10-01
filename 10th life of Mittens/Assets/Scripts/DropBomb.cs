@@ -25,7 +25,7 @@ public class DropBomb : Droppable
     // Start is called before the first frame update
     void Start()
     {
-        OnDrop();
+        Drop();
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class DropBomb : Droppable
     }
 
     // THIS SHOULD OVERRIDE FROM A 'DROPPABLE' LATER
-    public override void OnDrop()
+    public override void Drop()
     {
         state = BombState.PRIMING;
     }

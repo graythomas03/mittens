@@ -55,8 +55,11 @@ public class EnemeyAI : MonoBehaviour
             }
         }
         //check if already past destination so its not going backwards
-        if(Nav.transform.position.z - destination[currentIndex].transform.position.z < -.5){
-             //move to next destination
+
+        var distanceToDestination = Vector3.Distance(Nav.transform.position, destination[currentIndex].transform.position);
+        if(distanceToDestination < 0.25)
+        {
+            //move to next destination
             currentIndex++;
             if(currentIndex >= destination.Length){
                 currentIndex = 0;

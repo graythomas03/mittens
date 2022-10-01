@@ -10,7 +10,10 @@ public class Player : MonoBehaviour
     private Rigidbody _rbody;
     
     Draggable grabbedObj;
-    private bool dragHeld = false;
+    Droppable heldObj;
+
+    private bool dragEvent = false;
+    private bool swipeEvent = false;
 
     void Awake() {
         // define input system
@@ -35,32 +38,55 @@ public class Player : MonoBehaviour
 
         _rbody.velocity = _moveSpeed * _dirVec;
 
+        // check for swipe event
+        _input.Player.Swipe.performed += ctx => swipeEvent = true;
+        _input.Player.Swipe.canceled += ctx => swipeEvent = false;
+
         // check for drag event
-        _input.Player.Drag.performed += ctx => dragHeld = true;
-        _input.Player.Drag.canceled += ctx => dragHeld = false;
+        _input.Player.Drag.performed += ctx => dragEvent = true;
+        _input.Player.Drag.canceled += ctx => dragEvent = false;
 
         // verify space is held if dragging object
-        if(grabbedObj != null && !dragHeld)
+        if(grabbedObj != null && !dragEvent)
             ReleaseDraggable();
+
+        // swipe event operations
+        if(swipeEvent) {
+            // if holding object, drop
+            if(heldObj != null) {
+                heldObj.Drop();
+                heldObj = null;
+            } else {
+                // player attack code
+            }
+        }
     }
 
     // Check to see if the player has initiated dragging an object
     private void OnCollisionStay(Collision collision)
     {
-        if (grabbedObj == null)
+        if (dragEvent && grabbedObj == null)
         {
             // The player isn't currently dragging anything; a new drag is possible
             Draggable other = collision.collider.GetComponent<Draggable>();
-            if (other != null && dragHeld)
-            {
-                // What the player has collided with is draggable, and the player is holding the grab key
+            if (other != null)
                 GrabDraggable(other, collision);
-            }
+        }
+
+        // if player attempting to hold object and there is no object already being held
+        if(swipeEvent && heldObj == null) {
+            Droppable obj = collision.collider.GetComponent<Droppable>();
+            if(obj != null)
+                heldObj = obj;
         }
     }
 
     private void GrabDraggable(Draggable target, Collision collision)
     {
+        // make sure player cant move already placed objects
+        if(target.isPlaced())
+            return;
+
         grabbedObj = target;
         FixedJoint grabJoint = gameObject.AddComponent<FixedJoint>();
         grabJoint.anchor = collision.GetContact(0).point;
