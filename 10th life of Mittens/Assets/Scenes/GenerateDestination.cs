@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class GenerateDestination : MonoBehaviour
 {
+    public GameObject[] lanes;
 
-    public GameObject[] destination1;
-    public GameObject[] destination2;
-    public GameObject[] destination3;
     public GameObject finalDestination;
     
-    public GameObject[] getDestination(){
-        GameObject[] finalDestinaiton = {destination1[Random.Range(0, destination1.Length)],
-            destination2[Random.Range(0, destination2.Length)],destination3[Random.Range(0, destination3.Length)], finalDestination};
-        return finalDestinaiton;
-    }
-   
-    // Start is called before the first frame update
-    void Start()
+    public GameObject[] getDestination()
     {
-        
-    }
+        List<GameObject> result = new List<GameObject>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        for(int i = 0; i < lanes.Length; i++)
+        {
+            var childCount = lanes[i].transform.childCount;
+            var randomChildIndex = Random.Range(0, childCount);
+            var location = lanes[i].transform.GetChild(randomChildIndex);
+
+            result.Add(location.gameObject);
+        }
+
+        result.Add(finalDestination);
+
+        return result.ToArray();
     }
 }
