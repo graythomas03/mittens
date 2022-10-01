@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
-    private void FixedUpdate()
-    {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-    }
-    
     public void ToggleFixedPosition(bool posIsFixed)
     {
         if (posIsFixed)
