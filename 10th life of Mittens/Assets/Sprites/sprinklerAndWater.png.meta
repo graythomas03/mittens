@@ -33,27 +33,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<< HEAD
     filterMode: 0
-=======
-    filterMode: 1
->>>>>>> DEV
     aniso: 1
     mipBias: 0
     wrapU: 0
     wrapV: 0
     wrapW: 0
-<<<<<<< HEAD
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-=======
-  nPOTScale: 1
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 0
->>>>>>> DEV
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -64,11 +53,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-<<<<<<< HEAD
   textureType: 8
-=======
-  textureType: 0
->>>>>>> DEV
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -85,11 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<< HEAD
     textureCompression: 0
-=======
-    textureCompression: 1
->>>>>>> DEV
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,7 +103,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
       name: sprinklerAndWater_0
@@ -139,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcaa53d74d36841499b173356661d81e
-      internalID: -739687636
+      spriteID: 0db19a0756312a648819d2707d25ee74
+      internalID: -1869320846
       vertices: []
       indices: 
       edges: []
@@ -149,10 +129,10 @@ TextureImporter:
       name: sprinklerAndWater_2
       rect:
         serializedVersion: 2
-        x: 547
-        y: 480
-        width: 164
-        height: 351
+        x: 544
+        y: 483
+        width: 167
+        height: 348
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cd1ee7f5278758488eaf7bd8eab5ec6
-      internalID: 659296452
+      spriteID: d623092dfc0547d45b61e00aed3116c5
+      internalID: 2025115169
       vertices: []
       indices: 
       edges: []
@@ -169,31 +149,20 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cacf5728f1a8bd148a137ee59e5f5583
-=======
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: 
->>>>>>> DEV
+    spriteID: 24f5fc680091a924da58c8ef1af82022
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
     nameFileIdTable:
-      sprinklerAndWater_3: -1547110433
-      sprinklerAndWater_2: 659296452
-      sprinklerAndWater_1: 1735420985
-      sprinklerAndWater_4: -2001142290
-      sprinklerAndWater_0: -739687636
-      sprinklerAndWater_5: 293090253
-=======
-    nameFileIdTable: {}
->>>>>>> DEV
+      sprinklerAndWater_3: 1962389041
+      sprinklerAndWater_2: 2025115169
+      sprinklerAndWater_1: 1976197744
+      sprinklerAndWater_4: 1753129500
+      sprinklerAndWater_0: -1869320846
+      sprinklerAndWater_5: -117109221
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
