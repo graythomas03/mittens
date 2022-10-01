@@ -11,13 +11,15 @@ public class EnemeyAI : MonoBehaviour
     private int currentIndex = 0; 
     public GameObject player; 
     public float chaseDistance = 25;
+    public float scaleMultiplier = .1f;
+    public float disToDestination = 0.2f;
 
     //Checks if AI is at desitation
     public bool atDesitnation(){
         //Checks distance
         float result = Vector3.Distance(Vector3.Scale(Nav.transform.position, new Vector3(1,0,1)), Vector3.Scale(destination[currentIndex].transform.position, new Vector3(1,0,1)));
         
-        if(result < 0.2f){
+        if(result < disToDestination){
             return true;            
         }
         return false;
@@ -27,6 +29,15 @@ public class EnemeyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //this is the percent scaled
+        float percent = Random.Range(1 - scaleMultiplier,1 + scaleMultiplier);
+        Vector3 scale = this.transform.localScale;
+        scale.x *= percent;
+        scale.z *= percent;
+        this.transform.localScale = scale;
+        //change speed based on size
+        Nav.speed *= (2 - percent);
+
         destination = AIDirection.getDestination();
         Nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
         Nav.SetDestination(destination[currentIndex].transform.position);
