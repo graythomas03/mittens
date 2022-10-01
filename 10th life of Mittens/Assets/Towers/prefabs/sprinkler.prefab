@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8482905926450930583}
   - component: {fileID: 8482905926450930577}
   - component: {fileID: 8275748767530621857}
+  - component: {fileID: 3130203823767135481}
   m_Layer: 0
   m_Name: sprinkler
   m_TagString: Untagged
@@ -113,3 +114,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &3130203823767135481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957622462374005957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4842b9ff755bf9b44a50e0ccd9c95114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
