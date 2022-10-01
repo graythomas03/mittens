@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f20ebc48124ae44a6db268f59cfe41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTimerFast: 0.5
-  cooldownTimerSlow: 2
+  cooldownTimerFast: 0.33
+  cooldownTimerSlow: 1.5
   projectilePrefab: {fileID: 6640332786167907525, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
 --- !u!135 &8275748767530621857
 SphereCollider:
