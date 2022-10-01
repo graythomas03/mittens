@@ -21,7 +21,7 @@ public class Goal : MonoBehaviour
         Debug.Log("collision");
         if(col.gameObject.tag == enemyTag){
             Debug.Log("collision with enemy");
-            WaveManager.Instance.LoseLife();
+            WaveManager.Instance.LoseWave();
         }
     }
 }
