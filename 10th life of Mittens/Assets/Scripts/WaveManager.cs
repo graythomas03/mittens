@@ -10,6 +10,9 @@ public class WaveManager : MonoBehaviour
     [Tooltip("Current game manager reference")]
     private GameManager gm;
 
+    [Tooltip("do you lose a life when you win a game or not")]
+    public bool loseLifeOnWin = false;
+
 
     [Header("Start Positions")]
     /**player start position object */
@@ -38,6 +41,11 @@ public class WaveManager : MonoBehaviour
     private float spawnTimer;
     /**current time for enemy spawn */
     private float spawnTime;
+    /**the max number of zombies that can chase the player at once*/
+    [SerializeField][Min(1)]private int maxChasing = 5;
+    /**the number of enemies currently chasing the player*/
+    private List<GameObject> currentChasing;
+
 
     [Header("enemy fields")]
     /**list of the current enemies*/
@@ -91,6 +99,7 @@ public class WaveManager : MonoBehaviour
         enemyList = new List<GameObject>();
         Debug.Log(waveStarted);
         waveTimer = WaveStartDelay;
+        currentChasing = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -148,6 +157,7 @@ public class WaveManager : MonoBehaviour
         ClearWave();
         SetupWave();
         currentWave++;
+        GameManager.Instance.UpdateWave(currentWave);
     }
 
     void ClearWave(){
@@ -156,6 +166,7 @@ public class WaveManager : MonoBehaviour
             enemyList.RemoveAt(enemyList.Count - 1);
             Destroy(currEnemy);
         }
+        currentChasing = new List<GameObject>();
         //enemyList = new List<GameObject>();
     }
 
@@ -176,6 +187,9 @@ public class WaveManager : MonoBehaviour
     void KillEnemy(GameObject enemy){
         if(enemyList.Contains(enemy)){
             enemyList.Remove(enemy);
+            if(currentChasing.Contains(enemy)){
+                currentChasing.Remove(enemy);
+            }
             Destroy(enemy);
             enemiesKilled++;
         }
@@ -198,7 +212,14 @@ public class WaveManager : MonoBehaviour
         return enemiesKilled < enemySpawnCount;
     }
 
-    public void LoseLife(){
+    public void WinWave(){
+        if(loseLifeOnWin){
+            gm.LoseLife();
+        }
+        EndWave();
+    }
+
+    public void LoseWave(){
         gm.LoseLife();
         EndWave();
     }
@@ -211,5 +232,20 @@ public class WaveManager : MonoBehaviour
         ClearWave();
         currentWave = 1;
         SetupWave();
+        GameManager.Instance.UpdateWave(currentWave);
+    }
+
+    public bool CanChase(GameObject enemy){
+        Debug.Log("can chase: " + (currentChasing.Count < maxChasing));
+        if(currentChasing.Contains(enemy)){
+            return true;
+        }
+        return currentChasing.Count < maxChasing;
+    }
+
+    public void StartChasing(GameObject enemy){
+        if(!currentChasing.Contains(enemy)){
+            currentChasing.Add(enemy);
+        }
     }
 }
