@@ -167,11 +167,14 @@ MonoBehaviour:
   - {fileID: 1632052351}
   - {fileID: 1040226623}
   enemySpawnPosVar: 0.5
+  enemyList: []
+  maxChasing: 5
   enemySpawnCount: 50
+  enemySpawnIncrease: 0.1
+  currentWaveSpawnCount: 0.1
   enemySpawnDelay: 0.7
   enemySpawnDelayVar: 0.4
-  maxChasing: 5
-  enemyList: []
+  enemySpawnDelayIncrease: 0.05
   waveStarted: 0
   WaveStartDelay: 5
   currentWave: 1
@@ -1782,7 +1785,7 @@ PrefabInstance:
       objectReference: {fileID: 1923566153}
     - target: {fileID: 3636385950820335130, guid: fe10f4b9d5f4d7f42bea6230d76d62fa, type: 3}
       propertyPath: chaseDistance
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3636385950820335131, guid: fe10f4b9d5f4d7f42bea6230d76d62fa, type: 3}
       propertyPath: m_Speed
