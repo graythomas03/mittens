@@ -10,7 +10,7 @@ public class directBulletScript : MonoBehaviour
     private Vector3 trapPosition;
     private float cooldownTimer = Mathf.Infinity;
     private float rotationTowardsEnemy;
-    [SerializeField] private float attackCoolDownTimer = 1f;
+    [SerializeField] private float attackCoolDownTimer;
     [SerializeField] private LayerMask EnemyLayer;
     [SerializeField] private projectileFollow projectilePrefab;
     private Transform enemyLocation;
