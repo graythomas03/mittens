@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemeyAI : MonoBehaviour
 {
 
-    private UnityEngine.AI.NavMeshAgent Nav;
+    private NavMeshAgent Nav;
     public GameObject[] destination;
     public GenerateDestination AIDirection; 
     private int currentIndex = 0; 
@@ -35,12 +36,13 @@ public class EnemeyAI : MonoBehaviour
         scale.x *= percent;
         scale.z *= percent;
         this.transform.localScale = scale;
+        
+        destination = AIDirection.getDestination();
+        Nav = GetComponent<NavMeshAgent>();
+        Nav.SetDestination(destination[currentIndex].transform.position);
+
         //change speed based on size
         Nav.speed *= (2 - percent);
-
-        destination = AIDirection.getDestination();
-        Nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        Nav.SetDestination(destination[currentIndex].transform.position);
     }
 
     // Update is called once per frame
