@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
      [SerializeField]private GameObject pauseUI;
     /**The life the cat is currently on. Starts at 1 and ends at 10*/
     [SerializeField]private int currentLife;
+    /**the current wave. Updated by waveMan*/
+    private int currentWave = 1;
     /**if the game is currently started or not*/
     [SerializeField]private bool gameStarted;
     /**if the game is currently paused*/
@@ -112,6 +114,10 @@ public class GameManager : MonoBehaviour
         paused = false;
         pauseUI.SetActive(false);
         inGameUI.SetActive(true);
+    }
+
+    public void UpdateWave(int wave){
+        currentWave = wave;
     }
 
     

@@ -51,15 +51,16 @@ public class EnemeyAI : MonoBehaviour
                 currentIndex = 0;
             }
         }
-
+        
         //distance from player to zombie
         float result = Vector3.Distance(Vector3.Scale(transform.position, new Vector3(1,0,1)), Vector3.Scale(player.transform.position, new Vector3(1,0,1)));
 
         //CHECK FOR TOO MANY ZOMBIES HERE
 
-        if(result < chaseDistance){
+        if( WaveManager.Instance.CanChase(gameObject) && result < chaseDistance){
             //set destination to player
             Nav.SetDestination(player.transform.position);
+            WaveManager.Instance.StartChasing(gameObject);
         }
         else{
             //Set new destination to marker
