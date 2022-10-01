@@ -17,7 +17,9 @@ public class TempPlayer : MonoBehaviour
     KeyCode upKey = KeyCode.UpArrow;
     KeyCode downKey = KeyCode.DownArrow;
     KeyCode grabKey = KeyCode.Space;
+    KeyCode bombKey = KeyCode.E;
 
+    [SerializeField] private GameObject dropBombPrefab;
     Draggable grabbedObj;
 
     void Start()
