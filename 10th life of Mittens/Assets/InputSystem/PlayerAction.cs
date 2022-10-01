@@ -37,9 +37,18 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Swipe"",
                     ""type"": ""Button"",
                     ""id"": ""162431eb-4674-4e48-ade5-5ee645df02e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""Button"",
+                    ""id"": ""65f9da5c-1cf1-4d94-89c0-76a38ac2bf48"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -51,10 +60,10 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""fd37a3dd-cd73-4a82-a726-cb025d472991"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Swipe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -167,6 +176,17 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28c038be-48ae-481f-942d-28efb5857ee3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -176,7 +196,8 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Swipe = m_Player.FindAction("Swipe", throwIfNotFound: true);
+        m_Player_Drag = m_Player.FindAction("Drag", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -237,13 +258,15 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Swipe;
+    private readonly InputAction m_Player_Drag;
     public struct PlayerActions
     {
         private @PlayerAction m_Wrapper;
         public PlayerActions(@PlayerAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Swipe => m_Wrapper.m_Player_Swipe;
+        public InputAction @Drag => m_Wrapper.m_Player_Drag;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -256,9 +279,12 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Swipe.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
+                @Swipe.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
+                @Swipe.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
+                @Drag.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
+                @Drag.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
+                @Drag.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -266,9 +292,12 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
+                @Swipe.started += instance.OnSwipe;
+                @Swipe.performed += instance.OnSwipe;
+                @Swipe.canceled += instance.OnSwipe;
+                @Drag.started += instance.OnDrag;
+                @Drag.performed += instance.OnDrag;
+                @Drag.canceled += instance.OnDrag;
             }
         }
     }
@@ -276,6 +305,7 @@ public partial class @PlayerAction : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnSwipe(InputAction.CallbackContext context);
+        void OnDrag(InputAction.CallbackContext context);
     }
 }
