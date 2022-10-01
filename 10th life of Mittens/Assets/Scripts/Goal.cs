@@ -18,8 +18,10 @@ public class Goal : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider col){
+        Debug.Log("collision");
         if(col.gameObject.tag == enemyTag){
-            
+            Debug.Log("collision with enemy");
+            WaveManager.Instance.LoseLife();
         }
     }
 }

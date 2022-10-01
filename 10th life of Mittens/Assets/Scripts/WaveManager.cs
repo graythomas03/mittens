@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+
+    [Tooltip("Current Wave Manager")]
+    private static WaveManager _instance;
+    [Tooltip("Current game manager reference")]
+    private GameManager gm;
+
+
     [Header("Start Positions")]
     /**player start position object */
     [SerializeField][Tooltip("player starting position")]private GameObject startPos;
@@ -19,7 +26,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField][Tooltip("the max amount the enemy spawn positions can vary by")][Min(0f)]private float enemySpawnPosVar;
     /**enemy spawn count*/
     [SerializeField][Tooltip("the number of enemies that spawn in the wave")]private int enemySpawnCount;
-    /**current number of enemies spawned
+    /**current number of enemies that have been spawned*/
+    private int enemiesSpawned;
+    /**current number of enemies that have been killed*/
+    private int enemiesKilled;
     /**enemy spawn delay*/
     [SerializeField][Tooltip("the standard delay between enemies")]private float enemySpawnDelay;
     /**enemy spawn delay variation percentage*/
@@ -32,10 +42,10 @@ public class WaveManager : MonoBehaviour
     [Header("enemy fields")]
     /**list of the current enemies*/
     [SerializeField][Tooltip("the list of the current wave's enemies")]private List<GameObject> enemyList;
-    /**the enemies which are currently spawned*/
-    [SerializeField][Tooltip("the list of the spawned enemies")]private List<GameObject> spawnedEnemyList;
-    /**the enemies which have been killed*/
-    [SerializeField][Tooltip("the list of the dead enemies")]private List<GameObject> deadEnemyList;
+    ///**the enemies which are currently spawned*/
+    // [SerializeField][Tooltip("the list of the spawned enemies")]private List<GameObject> spawnedEnemyList;
+    // /**the enemies which have been killed*/
+    // [SerializeField][Tooltip("the list of the dead enemies")]private List<GameObject> deadEnemyList;
 
     /**wave started */
     [SerializeField][Tooltip("whether or not the wave has started")]public bool waveStarted = false;
@@ -46,22 +56,49 @@ public class WaveManager : MonoBehaviour
     /**current wave*/
     [SerializeField][Tooltip("the current wave")]public int currentWave = 1;
 
+    public static WaveManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<WaveManager>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject();
+                    _instance = go.AddComponent<WaveManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
     void Awake(){
-        
+        if (Instance != this)
+        {
+            Destroy(this.gameObject);
+            Destroy(this);
+            return;
+        }
+        _instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameManager.Instance;
         enemyPrefab.SetActive(false);
         enemyList = new List<GameObject>();
-        SetupWave();
-        
+        Debug.Log(waveStarted);
+        waveTimer = WaveStartDelay;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!gm.Playing()){
+            return;
+        }
         if(waveStarted){
             if(spawnTimer < 0f){
                 SpawnEnemy();
@@ -92,26 +129,28 @@ public class WaveManager : MonoBehaviour
 
     //Setup new wave
     void SetupWave(){
-        for(int i = 0; i < enemySpawnCount; i++){
-            Transform spawn = enemySpawnPos[Random.Range(0,enemySpawnPos.Count)].transform;
-            Vector3 spawnPos = new Vector3(spawn.position.x +Random.Range(-enemySpawnPosVar,enemySpawnPosVar), spawn.position.y, spawn.position.z + Random.Range(-enemySpawnPosVar,enemySpawnPosVar));
-            enemyList.Add(Instantiate(enemyPrefab, spawnPos, spawn.rotation));
-        }
+        // for(int i = 0; i < enemySpawnCount; i++){
+        //     Transform spawn = enemySpawnPos[Random.Range(0,enemySpawnPos.Count)].transform;
+        //     Vector3 spawnPos = new Vector3(spawn.position.x +Random.Range(-enemySpawnPosVar,enemySpawnPosVar), spawn.position.y, spawn.position.z + Random.Range(-enemySpawnPosVar,enemySpawnPosVar));
+        //     enemyList.Add(Instantiate(enemyPrefab, spawnPos, spawn.rotation));
+        // }
+        Debug.Log("setup wave");
         waveStarted = false;
         waveTimer = WaveStartDelay;
     }
 
     void StartWave(){
+        Debug.Log("Start wave");
         waveStarted = true;
     }
 
     void EndWave(){
         ClearWave();
         SetupWave();
+        currentWave++;
     }
 
     void ClearWave(){
-        int enemiesLeft = enemyList.Count;
         while(enemyList.Count > 0){
             GameObject currEnemy = enemyList[enemyList.Count - 1];
             enemyList.RemoveAt(enemyList.Count - 1);
@@ -120,31 +159,25 @@ public class WaveManager : MonoBehaviour
         //enemyList = new List<GameObject>();
     }
 
-    void SpawnEnemy(){
-        if(enemyList.Count > 0){
-            GameObject enemy = enemyList[0];
-            enemyList.RemoveAt(0);
-            spawnedEnemyList.Add(enemy);
-            enemy.SetActive(true);
-        }
-    }
+    
 
-    void SpawnEnemy(GameObject enemy){
-        if(enemyList.Contains(enemy)){
-            enemyList.Remove(enemy);
-            spawnedEnemyList.Add(enemy);
-            enemy.SetActive(true);
+    void SpawnEnemy(){
+        if(!EnemiesLeftToSpawn()){
+            return;
         }
-        else{
-            Debug.LogWarning("enemy not detected on Spawn call");
-        }
+        Transform spawn = enemySpawnPos[Random.Range(0,enemySpawnPos.Count)].transform;
+        Vector3 spawnPos = new Vector3(spawn.position.x +Random.Range(-enemySpawnPosVar,enemySpawnPosVar), spawn.position.y, spawn.position.z + Random.Range(-enemySpawnPosVar,enemySpawnPosVar));
+        GameObject enemy = Instantiate(enemyPrefab, spawnPos, spawn.rotation);
+        enemyList.Add(enemy);
+        enemy.SetActive(true);
+        enemiesSpawned++;
     }
 
     void KillEnemy(GameObject enemy){
-        if(spawnedEnemyList.Contains(enemy)){
-            spawnedEnemyList.Remove(enemy);
-            deadEnemyList.Add(enemy);
-            enemy.SetActive(false);
+        if(enemyList.Contains(enemy)){
+            enemyList.Remove(enemy);
+            Destroy(enemy);
+            enemiesKilled++;
         }
         else{
             Debug.LogWarning("enemy not detected on Kill call");
@@ -158,10 +191,25 @@ public class WaveManager : MonoBehaviour
     }
 
     bool EnemiesLeftToSpawn(){
-        return enemyList.Count > 0;
+        return enemiesSpawned < enemySpawnCount;
     }
 
     bool EnemiesLeftAlive(){
-        return spawnedEnemyList.Count > 0;
+        return enemiesKilled < enemySpawnCount;
+    }
+
+    public void LoseLife(){
+        gm.LoseLife();
+        EndWave();
+    }
+
+    public void StartGame(){
+        SetupWave();
+    }
+
+    public void Reset(){
+        ClearWave();
+        currentWave = 1;
+        SetupWave();
     }
 }
