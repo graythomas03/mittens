@@ -5,10 +5,9 @@ using UnityEngine;
 public class TempPlayer : MonoBehaviour
 {
     [SerializeField] private float walkSpeed;
-    [SerializeField] private float slowDownFactor;
+    
     [SerializeField] private float walkTopSpeed;
     [SerializeField] private float pushBackStrength;
-    private const float zeroClampVal = 0.01f;
 
     Rigidbody myRigidbody;
 
@@ -56,26 +55,30 @@ public class TempPlayer : MonoBehaviour
 
         float currentSpeed = myRigidbody.velocity.magnitude;
         float prospectiveSpeed = appliedForce.magnitude;
-        Debug.Log("current speed:" + currentSpeed);
-        Debug.Log("prospective speed:" + prospectiveSpeed);
+        //Debug.Log("current speed:" + currentSpeed);
+        //Debug.Log("prospective speed:" + prospectiveSpeed);
         if (currentSpeed + prospectiveSpeed > walkTopSpeed)
         {
-            Debug.Log("Before: " + appliedForce);
+            //Debug.Log("Before: " + appliedForce);
             appliedForce.Normalize();
             appliedForce *= walkTopSpeed - currentSpeed;
-            Debug.Log("After: " + appliedForce);
+            //Debug.Log("After: " + appliedForce);
         }
 
-        Debug.Log(new Vector3(appliedForce.x, 0, appliedForce.y) / myRigidbody.mass);
+        //Debug.Log(new Vector3(appliedForce.x, 0, appliedForce.y) / myRigidbody.mass);
         myRigidbody.AddForce(new Vector3(appliedForce.x, 0, appliedForce.y) / myRigidbody.mass);
-
-        currentSpeed = myRigidbody.velocity.magnitude;
-        myRigidbody.velocity = currentSpeed < zeroClampVal ? Vector3.zero : myRigidbody.velocity * slowDownFactor;
 
         // Let go of the currently dragged object if the key is not kept held
         if (grabbedObj != null && !Input.GetKey(grabKey))
         {
             ReleaseDraggable();
+        }
+
+        // Drop Bomb
+        if (Input.GetKeyDown(bombKey))
+        {
+            GameObject newBomb = Instantiate(dropBombPrefab);
+            newBomb.transform.position = transform.position;
         }
     }
 

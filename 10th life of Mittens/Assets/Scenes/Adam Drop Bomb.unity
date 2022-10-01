@@ -132,11 +132,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 265469565}
+  - component: {fileID: 265469566}
+  - component: {fileID: 265469567}
   - component: {fileID: 265469564}
   - component: {fileID: 265469563}
   - component: {fileID: 265469562}
   - component: {fileID: 265469561}
-  - component: {fileID: 265469566}
   m_Layer: 0
   m_Name: Dummy Trap B
   m_TagString: Untagged
@@ -248,6 +249,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4842b9ff755bf9b44a50e0ccd9c95114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &265469567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265469560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0712a119d36e83c4a8500aed591b8baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &406309158
@@ -438,6 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 590104734}
   - component: {fileID: 590104735}
+  - component: {fileID: 590104737}
   - component: {fileID: 590104733}
   - component: {fileID: 590104732}
   - component: {fileID: 590104736}
@@ -543,10 +557,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 150
-  slowDownFactor: 0.9
   walkTopSpeed: 150
   pushBackStrength: 1
-  dropBombPrefab: {fileID: 0}
+  dropBombPrefab: {fileID: 4380151880666352040, guid: e2f2cc715bc2b1640bbf1cf7d6ba3016, type: 3}
 --- !u!136 &590104736
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -561,6 +574,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &590104737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590104729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1a40489efdb3a48beb19175759a77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 0.8
 --- !u!1 &1125594330
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,11 +694,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1208339019}
+  - component: {fileID: 1208339020}
+  - component: {fileID: 1208339021}
   - component: {fileID: 1208339018}
   - component: {fileID: 1208339017}
   - component: {fileID: 1208339016}
   - component: {fileID: 1208339015}
-  - component: {fileID: 1208339020}
   m_Layer: 0
   m_Name: Dummy Trap A
   m_TagString: Untagged
@@ -786,6 +813,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4842b9ff755bf9b44a50e0ccd9c95114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1208339021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208339014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0712a119d36e83c4a8500aed591b8baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1557282550
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,12 +834,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1557282556}
-  - component: {fileID: 1557282555}
+  - component: {fileID: 1557282558}
   - component: {fileID: 1557282554}
   - component: {fileID: 1557282553}
   - component: {fileID: 1557282552}
   - component: {fileID: 1557282551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dummy Enemy B
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -830,7 +869,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557282550}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 874f02df5ed3d234a9d769b969368037, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -887,23 +926,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557282550}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1557282555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557282550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abeb319dd9b06e741bb97b3e48d86056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 150
-  slowDownFactor: 0.9
-  walkTopSpeed: 150
-  pushBackStrength: 1
-  dropBombPrefab: {fileID: 0}
 --- !u!4 &1557282556
 Transform:
   m_ObjectHideFlags: 0
@@ -919,6 +941,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1557282558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557282550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1a40489efdb3a48beb19175759a77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 0.9
 --- !u!1 &1958588623
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,11 +963,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958588628}
+  - component: {fileID: 1958588630}
   - component: {fileID: 1958588627}
   - component: {fileID: 1958588626}
   - component: {fileID: 1958588625}
   - component: {fileID: 1958588624}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dummy Enemy A
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -962,7 +998,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958588623}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 874f02df5ed3d234a9d769b969368037, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -1034,6 +1070,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1958588630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958588623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1a40489efdb3a48beb19175759a77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 0.9
 --- !u!1 &2056285484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,11 +1092,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2056285489}
+  - component: {fileID: 2056285491}
   - component: {fileID: 2056285488}
   - component: {fileID: 2056285487}
   - component: {fileID: 2056285486}
   - component: {fileID: 2056285485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dummy Enemy C
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1077,7 +1127,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056285484}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 874f02df5ed3d234a9d769b969368037, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -1149,3 +1199,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2056285491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056285484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1a40489efdb3a48beb19175759a77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 0.9
