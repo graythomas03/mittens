@@ -1,5 +1,5 @@
 {
-    "name": "Input",
+    "name": "PlayerAction",
     "maps": [
         {
             "name": "Player",
@@ -15,9 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "Swipe",
                     "type": "Button",
                     "id": "162431eb-4674-4e48-ade5-5ee645df02e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "65f9da5c-1cf1-4d94-89c0-76a38ac2bf48",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -29,10 +38,10 @@
                     "name": "",
                     "id": "fd37a3dd-cd73-4a82-a726-cb025d472991",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "Swipe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -145,6 +154,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "28c038be-48ae-481f-942d-28efb5857ee3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
