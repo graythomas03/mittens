@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class GameManager : MonoBehaviour
     /**the in game UI panels*/
     [SerializeField]private GameObject inGameUI;
     /**the pause menu UI*/
-     [SerializeField]private GameObject pauseUI;
+    [SerializeField]private GameObject pauseUI;
+    /**the wave counter text box*/
+    [SerializeField]private TextMeshProUGUI waveText;
     /**The life the cat is currently on. Starts at 1 and ends at 10*/
     [SerializeField]private int currentLife;
     /**the current wave. Updated by waveMan*/
@@ -118,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateWave(int wave){
         currentWave = wave;
+        waveText.text = "Wave " + currentWave;
     }
 
     
