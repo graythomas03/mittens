@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Droppable : MonoBehaviour
 {
-    public virtual void OnDrop()
+    public virtual void Drop()
     {
         // To be overriden in child classes
     }
