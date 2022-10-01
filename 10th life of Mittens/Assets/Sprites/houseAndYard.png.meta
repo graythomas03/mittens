@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6fe20ed3616e36040928889d008513bc
+guid: af52e8ad65aea6644a0e0a15bf349c2e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,27 +33,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<< HEAD
-    filterMode: 0
-=======
     filterMode: 1
->>>>>>> DEV
     aniso: 1
     mipBias: 0
     wrapU: 0
     wrapV: 0
     wrapW: 0
-<<<<<<< HEAD
-  nPOTScale: 0
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 2
-=======
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
   spriteMode: 0
->>>>>>> DEV
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -64,11 +53,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-<<<<<<< HEAD
-  textureType: 8
-=======
   textureType: 0
->>>>>>> DEV
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -85,11 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<< HEAD
-    textureCompression: 0
-=======
     textureCompression: 1
->>>>>>> DEV
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,78 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
-    sprites:
-    - serializedVersion: 2
-      name: sprinklerAndWater_0
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 403
-        width: 348
-        height: 388
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fcaa53d74d36841499b173356661d81e
-      internalID: -739687636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprinklerAndWater_2
-      rect:
-        serializedVersion: 2
-        x: 547
-        y: 480
-        width: 164
-        height: 351
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5cd1ee7f5278758488eaf7bd8eab5ec6
-      internalID: 659296452
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: cacf5728f1a8bd148a137ee59e5f5583
-=======
     sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 
->>>>>>> DEV
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
-    nameFileIdTable:
-      sprinklerAndWater_3: -1547110433
-      sprinklerAndWater_2: 659296452
-      sprinklerAndWater_1: 1735420985
-      sprinklerAndWater_4: -2001142290
-      sprinklerAndWater_0: -739687636
-      sprinklerAndWater_5: 293090253
-=======
     nameFileIdTable: {}
->>>>>>> DEV
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
