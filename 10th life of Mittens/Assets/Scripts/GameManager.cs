@@ -72,6 +72,52 @@ public class GameManager : MonoBehaviour
 
     public void LoseLife(){
         currentLife++;
+        GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+
+        for (int i = 0; i < heartsPanel.transform.childCount; i++)
+        {
+            GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+            Animator animator = image.GetComponent<Animator>();
+
+            if (i + 1 == currentLife)
+            {
+                // Heart corresponds to the current life lost
+                animator.SetTrigger("Dies");
+            }
+            else if (currentLife == 3 || currentLife == 6)
+            {
+                // All hearts must proceed to next decay state
+                animator.SetTrigger("Decays");
+            }
+
+            if (currentLife == 9)
+            {
+                // Give the last heart time to decay (0.45sec) and wait a moment before starting to refill health bar
+                StartCoroutine(ZombifyHearts());
+            }
+        }
+    }
+
+    IEnumerator ZombifyHearts()
+    {
+        GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+        for (int i = heartsPanel.transform.childCount - 1; i > -1; i++)
+        {
+            GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+            Animator animator = image.GetComponent<Animator>();
+
+            animator.SetTrigger("Zombifies");
+            yield return new WaitForSeconds(.2f);
+        }
+
+        StartTenthLife();
+        StopCoroutine(ZombifyHearts());
+    }
+
+    // Called from the ZombifyHearts coroutine, which itself runs after LoseLife()
+    public void StartTenthLife()
+    {
+
     }
 
     public bool Paused(){
