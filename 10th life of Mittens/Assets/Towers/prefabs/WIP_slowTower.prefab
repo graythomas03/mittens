@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1412757936327580983}
   - component: {fileID: 8482905926450930580}
   - component: {fileID: 8482905926450930583}
-  - component: {fileID: 8482905926450930577}
   - component: {fileID: 8275748767530621857}
+  - component: {fileID: 2916599404906845572}
   m_Layer: 0
-  m_Name: sprinkler
+  m_Name: WIP_slowTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,21 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8482905926450930577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2957622462374005957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f20ebc48124ae44a6db268f59cfe41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownTimerFast: 0.33
-  cooldownTimerSlow: 1.5
-  projectilePrefab: {fileID: 6640332786167907525, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
 --- !u!135 &8275748767530621857
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -113,3 +98,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &2916599404906845572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957622462374005957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5b953a2dc43148ae02d441987a402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapRange: 5
+  attackCoolDownTimer: 1
