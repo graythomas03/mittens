@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 5728025733426736913}
   - component: {fileID: 5779499742452030760}
   - component: {fileID: 7842094601339708273}
+  - component: {fileID: 135248833}
   m_Layer: 0
   m_Name: tennisBallLauncher
   m_TagString: Untagged
@@ -302,9 +303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ea90bc715573b499b50a22ec7811a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  trapRange: 5
-  attackCoolDownTimer: 0.5
+  damage: 3
+  trapRange: 50
+  attackCoolDownTimer: 2
   projectilePrefab: {fileID: 7947660422996723656, guid: 2f0160769e1c98d4cbe6a2fe1911933a, type: 3}
   towerROT: {fileID: 1446705177638968648}
 --- !u!114 &1446705177638968648
@@ -363,3 +364,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!208 &135248833
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8877627029520672134}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1, y: 2.5, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
