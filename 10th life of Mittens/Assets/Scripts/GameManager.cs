@@ -132,7 +132,9 @@ public class GameManager : MonoBehaviour
     {
         score += val;
         GameObject bottomPanel = inGameUI.transform.GetChild(0).gameObject;
-        TextMeshPro scoreDisplay = inGameUI.transform.GetChild(totalLives).GetComponent<TextMeshPro>();
+        TextMeshProUGUI scoreDisplay = bottomPanel.transform.GetChild(totalLives).GetComponent<TextMeshProUGUI>();
+        Debug.Log("display " + scoreDisplay!= null);
+        Debug.Log("display " + scoreDisplay.text!= null);
         scoreDisplay.text = "Score: " + score;
     }
 
@@ -208,6 +210,10 @@ public class GameManager : MonoBehaviour
     public void UpdateWave(int wave){
         currentWave = wave;
         waveText.text = "Wave " + currentWave;
+    }
+
+    public int GetLife(){
+        return currentLife;
     }
 
     
