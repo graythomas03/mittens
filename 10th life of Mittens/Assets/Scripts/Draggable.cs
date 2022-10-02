@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
+    [Tooltip("3 = heavy, 2 = medium, 1 = light")][Range(1,4)]public int weight = 1;
     private bool placed = false;
 
     void Start() {
@@ -27,5 +28,9 @@ public class Draggable : MonoBehaviour
 
     public bool isPlaced() {
         return placed;
+    }
+
+    public int getWeight(){
+        return weight;
     }
 }
