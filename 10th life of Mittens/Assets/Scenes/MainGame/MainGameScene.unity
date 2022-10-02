@@ -230,7 +230,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 407357076}
   waveText: {fileID: 771639688}
   scoreText: {fileID: 408413141}
-  finalScoreText: {fileID: 673396000}
+  finalScoreText: {fileID: 771639689}
   currentLife: 0
   gameStarted: 0
   paused: 0
@@ -1496,17 +1496,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d5dbeb25a402f144bd640c9d1018177, type: 3}
---- !u!114 &673396000 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1653663607, guid: cff315266fb85db449381d344903cb85, type: 3}
-  m_PrefabInstance: {fileID: 771639687}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &727083902 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8179666996837025171, guid: cff315266fb85db449381d344903cb85, type: 3}
@@ -1706,6 +1695,17 @@ PrefabInstance:
 --- !u!114 &771639688 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6514496834385513562, guid: cff315266fb85db449381d344903cb85, type: 3}
+  m_PrefabInstance: {fileID: 771639687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &771639689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3790947724126422715, guid: cff315266fb85db449381d344903cb85, type: 3}
   m_PrefabInstance: {fileID: 771639687}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -2226,7 +2226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3961769699234564326, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
       propertyPath: _moveSpeed
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3961769699234564327, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
       propertyPath: m_Name
