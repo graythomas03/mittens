@@ -77,25 +77,19 @@ public class SoundManager : MonoBehaviour
             var source = musicSources[i].Source;
             var shouldBeMuted = musicSources[i].ShouldBeMute;
 
-            if (source.mute != shouldBeMuted)
+            if (shouldBeMuted && source.volume > 0)
             {
-                if(shouldBeMuted)
+                if (source.volume <= 0)
                 {
-                    source.volume -= musicFadeRate;
-                    if(source.volume <= 0)
-                    {
-                        source.volume = 0;
-                        source.mute = true;
-                    }
+                    source.volume = 0;
                 }
-                else
+            }
+            else if (!shouldBeMuted && source.volume < 1)
+            {
+                source.volume += musicFadeRate;
+                if (source.volume >= 1)
                 {
-                    source.volume += musicFadeRate;
-                    if (source.volume >= 1)
-                    {
-                        source.volume = 1;
-                        source.mute = false;
-                    }
+                    source.volume = 1;
                 }
             }
         }
