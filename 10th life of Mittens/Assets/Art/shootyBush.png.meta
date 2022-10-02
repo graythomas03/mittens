@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 2bcf824c8f23729409849c752916a127
-=======
-guid: e88bfc237b053c544b88408d7ea1a23f
->>>>>>> ca2db1432fcf4db550c7064e9c3aca811131134e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -37,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -66,8 +62,8 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
-  cookieLightType: 0
+  applyGammaDecoding: 1
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -86,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -98,7 +94,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b28a66d96b0755741bfb36b64dbf3b13
-      internalID: -467217104
+      spriteID: 9c87b8fc3f300b147be037a4233016a8
+      internalID: 1944773975
       vertices: []
       indices: 
       edges: []
@@ -144,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b07dc76c79045594dbd9973f58be91e9
-      internalID: -780303804
+      spriteID: ad3fe034a5e08f745ad525d86c6e32ed
+      internalID: 754596335
       vertices: []
       indices: 
       edges: []
@@ -153,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9b91797777f522f4893fca4bb2ed9b92
+    spriteID: 63a3cfcd644592f4e84d983ac40c7ba3
     internalID: 0
     vertices: []
     indices: 
@@ -161,8 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      shootyBush_0: -467217104
-      shootyBush_1: -780303804
+      shootyBush_0: 1944773975
+      shootyBush_1: 754596335
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
