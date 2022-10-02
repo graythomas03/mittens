@@ -230,7 +230,6 @@ MonoBehaviour:
   waveText: {fileID: 771639688}
   scoreText: {fileID: 408413141}
   currentLife: 0
-  totalLives: 0
   gameStarted: 0
   paused: 0
 --- !u!1 &185754244

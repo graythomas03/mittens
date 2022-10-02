@@ -354,3 +354,7 @@ C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\obj\Debug\Assembl
 C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\obj\Debug\Assembly-CSharp.dll
 C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\Temp\Bin\Debug\Unity.2D.Sprite.Editor.dll
+C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\Temp\Bin\Debug\Unity.InputSystem.dll
+C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\Temp\Bin\Debug\Unity.2D.Sprite.Editor.pdb
+C:\Users\Prismly\Documents\GitHub\mittens\10th life of Mittens\Temp\Bin\Debug\Unity.InputSystem.pdb
