@@ -185,6 +185,7 @@ MonoBehaviour:
     ShouldBeMute: 1
   musicFadeRate: 0.8
   maxVolume: 0.65
+  muteInsteadOfFade: 1
   soundFXList:
   - Clips:
     - {fileID: 8300000, guid: e1f36b826ef5c814cb9954ba7dbf1122, type: 3}
@@ -272,7 +273,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 597406fc4a6ecea44bf11fbdfb2b0767, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -400,7 +401,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 36247bcdffa84ac4f8f7ed81976ea344, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -528,7 +529,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b7dd727e376babb4bb133519dd7a8160, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
