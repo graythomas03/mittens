@@ -91,7 +91,7 @@ public class projectileFollow : MonoBehaviour
         Debug.Log(other.tag);
         if(other.tag == enemyTag){
             //damage target
-                Health targetsHealth = targetLocation.gameObject.GetComponent<Health>();
+                Health targetsHealth = other.GetComponent<Health>();
                 if (targetsHealth != null)
                 {
                     targetsHealth.takeDamage(damage);
