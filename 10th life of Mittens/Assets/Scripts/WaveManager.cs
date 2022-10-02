@@ -74,7 +74,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField][Tooltip("the current wave")]public int currentWave = 1;
     
 
-
+    [Header("Score fields")]
+    [SerializeField][Tooltip("points per zombie kill")]public int pointsPerZombieKill = 10;
+    [SerializeField][Tooltip("points per wave clear")]public int pointsPerWaveClear = 1000;
+    [SerializeField][Tooltip("how drastically the waves affect clear points (waveMult * wave *pointsPerWaveClear")]public int waveMult = 1;
     
 
     public static WaveManager Instance
@@ -170,7 +173,9 @@ public class WaveManager : MonoBehaviour
 
     void EndWave(){
         ClearWave();
-        SetupWave();
+        if(gm.GetLife() < 10){
+            SetupWave();
+        }
         currentWave++;
         GameManager.Instance.UpdateWave(currentWave);
     }
@@ -207,6 +212,7 @@ public class WaveManager : MonoBehaviour
             }
             Destroy(enemy);
             enemiesKilled++;
+            gm.AddPoints(pointsPerZombieKill);
         }
         else{
             Debug.LogWarning("enemy not detected on Kill call");
@@ -234,14 +240,16 @@ public class WaveManager : MonoBehaviour
         if(loseLifeOnWin){
             gm.LoseLife();
         }
+        gm.AddPoints(waveMult * currentWave * pointsPerWaveClear);
         EndWave();
     }
 
     public void LoseWave(){
         gm.LoseLife();
-        //if(gm.GetLife() < 10){
-        SpawnPlayer();
-        //}
+        gm.AddPoints(-1000);
+        if(gm.GetLife() < 10){
+            SpawnPlayer();
+        }
         EndWave();
     }
 
@@ -258,7 +266,7 @@ public class WaveManager : MonoBehaviour
     }
 
     public bool CanChase(GameObject enemy){
-        Debug.Log("can chase: " + (currentChasing.Count < maxChasing));
+        //Debug.Log("can chase: " + (currentChasing.Count < maxChasing));
         if(currentChasing.Contains(enemy)){
             return true;
         }

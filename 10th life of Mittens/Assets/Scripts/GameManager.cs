@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     /**the pause menu UI*/
     [SerializeField]private GameObject pauseUI;
     /**the wave counter text box*/
-    [SerializeField]private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     /**The life the cat is currently on. Starts at 1 and ends at 10*/
     [SerializeField]private int currentLife;
     [SerializeField]private int totalLives;
@@ -131,9 +132,7 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int val)
     {
         score += val;
-        GameObject bottomPanel = inGameUI.transform.GetChild(0).gameObject;
-        TextMeshPro scoreDisplay = inGameUI.transform.GetChild(totalLives).GetComponent<TextMeshPro>();
-        scoreDisplay.text = "Score: " + score;
+        scoreText.text = "Score: " + score;
     }
 
     public bool Paused(){
@@ -183,7 +182,7 @@ public class GameManager : MonoBehaviour
 
             GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
 
-            for (int i = 0; i < heartsPanel.transform.childCount; i++)
+            for (int i = 0; i < totalLives; i++)
             {
                 GameObject image = heartsPanel.transform.GetChild(i).gameObject;
                 image.GetComponent<Animator>().enabled = false;
@@ -208,6 +207,10 @@ public class GameManager : MonoBehaviour
     public void UpdateWave(int wave){
         currentWave = wave;
         waveText.text = "Wave " + currentWave;
+    }
+
+    public int GetLife(){
+        return currentLife;
     }
 
     
