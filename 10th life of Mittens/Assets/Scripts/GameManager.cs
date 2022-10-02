@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameObject inGameUI;
     /**the pause menu UI*/
     [SerializeField]private GameObject pauseUI;
+    /**the game over UI*/
+    [SerializeField]private GameObject gameOverUI;
     /**the wave counter text box*/
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
     /**The life the cat is currently on. Starts at 1 and ends at 10*/
     [SerializeField]private int currentLife;
     private int currentHealth = 9;
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
         mainMenuUI.SetActive(true);
         pauseUI.SetActive(false);
         inGameUI.SetActive(false);
+        gameOverUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -179,9 +183,11 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         SoundManager.Instance.ToggleTitle(false);
         SoundManager.Instance.Toggle(true, 0);
+        score = 0;
 
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(true);
+        gameOverUI.SetActive(false);
         gameStarted = true;
         waveMan.StartGame();
     }
@@ -200,6 +206,7 @@ public class GameManager : MonoBehaviour
         pauseUI.SetActive(false);
         mainMenuUI.SetActive(true);
         inGameUI.SetActive(false);
+        gameOverUI.SetActive(false);
     }
 
     public void PauseGame(){
@@ -208,6 +215,7 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
             paused = true;
             pauseUI.SetActive(true);
+            gameOverUI.SetActive(false);
 
             GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
 
@@ -223,6 +231,7 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         paused = false;
         pauseUI.SetActive(false);
+        gameOverUI.SetActive(false);
 
         GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
 
@@ -242,5 +251,12 @@ public class GameManager : MonoBehaviour
         return currentLife;
     }
 
+    public void GameOver(){
+        gameOverUI.SetActive(true);
+        mainMenuUI.SetActive(false);
+        inGameUI.SetActive(false);
+        pauseUI.SetActive(false);
+        finalScoreText.text = "Score: " + score;
+    }
     
 }
