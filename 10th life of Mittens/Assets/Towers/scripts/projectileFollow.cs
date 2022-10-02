@@ -32,7 +32,7 @@ public class projectileFollow : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(this.transform.forward, targetDirection, rotationStep, 0.0f);
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
-            Debug.Log("rotating projectile");
+            //Debug.Log("rotating projectile");
             transform.rotation = Quaternion.LookRotation(newDirection);
 
             //if reached target then destroy bullet game object
@@ -59,7 +59,7 @@ public class projectileFollow : MonoBehaviour
 
     public void setTargetLocation(Transform target)
     {
-        Debug.Log("target is set");
+        //Debug.Log("target is set");
         targetLocation = target;
     }
 

@@ -6,15 +6,21 @@ public class Draggable : MonoBehaviour
 {
     private bool placed = false;
 
+    void Start() {
+        ToggleFixedPosition(true);
+    }
+
     public void ToggleFixedPosition(bool posIsFixed)
     {
         if (posIsFixed)
         {
+            Debug.Log("Called TFP true");
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            placed = true;
+            //placed = true;
         }
         else
         {
+            Debug.Log("Called TFP false");
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         }
     }
