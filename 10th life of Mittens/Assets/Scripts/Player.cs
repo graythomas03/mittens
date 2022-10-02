@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private bool dragEvent = false;
     private bool swipeEvent = false;
 
+    private string enemyTag;    // tag of GameObjects player should be able to attack
+
     void Awake() {
         // define input system
         _input = new PlayerAction();
@@ -27,6 +29,11 @@ public class Player : MonoBehaviour
 
         // init direction vector
         _dirVec = Vector3.zero;
+    }
+
+    void Start() {
+        this.tag = "player";
+        enemyTag = "enemy";
     }
 
 // update player movement every tick
@@ -42,9 +49,11 @@ public class Player : MonoBehaviour
         _input.Player.Swipe.performed += ctx => swipeEvent = true;
         _input.Player.Swipe.canceled += ctx => swipeEvent = false;
 
-        // check for drag event
-        _input.Player.Drag.performed += ctx => dragEvent = true;
-        _input.Player.Drag.canceled += ctx => dragEvent = false;
+        // check for drag event (only if player)
+        if(this.tag.Equals("player")) {
+            _input.Player.Drag.performed += ctx => dragEvent = true;
+            _input.Player.Drag.canceled += ctx => dragEvent = false;
+        }
 
         // verify space is held if dragging object
         if(grabbedObj != null && !dragEvent)
@@ -62,6 +71,14 @@ public class Player : MonoBehaviour
         }
     }
 
+/** GAMEMANAGER METHODS **/
+    public void changeSide() {
+        this.tag = "enemy";
+        enemyTag = "player";    // or whichever tag turret bullets use
+    }
+
+/** INTERNAL METHODS **/
+
     // Check to see if the player has initiated dragging an object
     private void OnCollisionStay(Collision collision)
     {
@@ -78,6 +95,12 @@ public class Player : MonoBehaviour
             Droppable obj = collision.collider.GetComponent<Droppable>();
             if(obj != null)
                 heldObj = obj;
+        }
+
+        // if player hits enemy
+        GameObject enemy = collision.collider.GetComponent<GameObject>();
+        if(enemy.tag.Equals("enemy")) {
+            GameManager.Instance.LoseLife();
         }
     }
 

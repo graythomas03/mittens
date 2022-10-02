@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private bool gameStarted;
     /**if the game is currently paused*/
     [SerializeField]private bool paused;
+    private bool canPause = true;
     [Tooltip("Current Game Manager")]
     private static GameManager _instance;
     public static GameManager Instance
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ZombifyHearts()
     {
-        // Pause to give the 9th heart time to die
+        // Pause to give the 9th heart time to die; disable pausing during this
         yield return new WaitForSeconds(1f);
         GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
         for (int i = heartsPanel.transform.childCount - 1; i > -1; i--)
