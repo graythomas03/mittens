@@ -19,6 +19,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField][Tooltip("player starting position")]private GameObject startPos;
     /**player start position for wave 10*/
     [SerializeField][Tooltip("player starting position for wave 10")]private GameObject wave10StartPos;
+    /**player object*/
+    [SerializeField][Tooltip("player character object")]private GameObject player;
 
     [Header("Enemy Fields")]
     /**enemy prefab*/
@@ -197,7 +199,7 @@ public class WaveManager : MonoBehaviour
         enemiesSpawned++;
     }
 
-    void KillEnemy(GameObject enemy){
+    public void KillEnemy(GameObject enemy){
         if(enemyList.Contains(enemy)){
             enemyList.Remove(enemy);
             if(currentChasing.Contains(enemy)){
@@ -218,6 +220,9 @@ public class WaveManager : MonoBehaviour
     }
 
     bool EnemiesLeftToSpawn(){
+        //if(gm.GetLife() >= 10){
+            //return true;
+        //}
         return enemiesSpawned < currentWaveSpawnCount;
     }
 
@@ -234,6 +239,9 @@ public class WaveManager : MonoBehaviour
 
     public void LoseWave(){
         gm.LoseLife();
+        //if(gm.GetLife() < 10){
+        SpawnPlayer();
+        //}
         EndWave();
     }
 
@@ -246,6 +254,7 @@ public class WaveManager : MonoBehaviour
         currentWave = 1;
         SetupWave();
         GameManager.Instance.UpdateWave(currentWave);
+        SpawnPlayer();
     }
 
     public bool CanChase(GameObject enemy){
@@ -259,6 +268,18 @@ public class WaveManager : MonoBehaviour
     public void StartChasing(GameObject enemy){
         if(!currentChasing.Contains(enemy)){
             currentChasing.Add(enemy);
+        }
+    }
+
+    public void SpawnPlayer(){
+        if(player){
+            player.transform.position = startPos.transform.position;
+        }
+    }
+
+    public void Life10(){
+        if(player){
+            player.transform.position = wave10StartPos.transform.position;
         }
     }
 }
