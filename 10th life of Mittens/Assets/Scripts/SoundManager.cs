@@ -2,7 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundFX { HitEnemy };
+    public enum SoundFX { 
+        HitEnemy,
+        TennisBallLaunch,
+        SprinlerSpray,
+        BombBlast,
+        CatMove,
+        CatSwipe,
+        CatDrag,
+        GameOver,
+        ReadySetGo,
+        SFXButton
+    };
+
 public class SoundManager : MonoBehaviour
 {
     [System.Serializable]
@@ -15,7 +27,7 @@ public class SoundManager : MonoBehaviour
     [System.Serializable]
     public class SoundFXClip
     {
-        public AudioClip Clip;
+        public AudioClip[] Clips;
         public SoundFX FX;
     }
 
@@ -26,11 +38,46 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private float musicFadeRate;
 
+    [SerializeField]
+    [Range(0f,1f)]
+    private float maxVolume;
+
     [Header("SoundFX")]
     [SerializeField]
     private SoundFXClip[] soundFXList;
 
     public AudioSource soundFXSource;
+    private static SoundManager _instance;
+
+
+        public static SoundManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<SoundManager>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject();
+                    _instance = go.AddComponent<SoundManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake(){
+        if (Instance != this)
+        {
+            Destroy(this.gameObject);
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+    }
+
+
 
     public void Toggle(bool isOn, params int[] indexes)
     {
@@ -52,7 +99,8 @@ public class SoundManager : MonoBehaviour
         {
             if(entry.FX == fx)
             {
-                clip = entry.Clip;
+                int size = entry.Clips.Length;
+                clip = entry.Clips[Random.Range(0, size)];
             }
         }
 
@@ -79,17 +127,18 @@ public class SoundManager : MonoBehaviour
 
             if (shouldBeMuted && source.volume > 0)
             {
+                source.volume -= musicFadeRate * Time.deltaTime;
                 if (source.volume <= 0)
                 {
                     source.volume = 0;
                 }
             }
-            else if (!shouldBeMuted && source.volume < 1)
+            else if (!shouldBeMuted && source.volume < maxVolume)
             {
-                source.volume += musicFadeRate;
-                if (source.volume >= 1)
+                source.volume += musicFadeRate * Time.deltaTime;
+                if (source.volume >= maxVolume)
                 {
-                    source.volume = 1;
+                    source.volume = maxVolume;
                 }
             }
         }

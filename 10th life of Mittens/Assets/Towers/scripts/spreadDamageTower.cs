@@ -5,6 +5,7 @@ using UnityEngine;
 public class spreadDamageTower : MonoBehaviour
 {
     private float[] angleList = new float[] {15f,30f,45f,60f,75f};
+    GameObject header;
     private float coolDown;
     [SerializeField] private float cooldownTimerFast;
     [SerializeField] private float cooldownTimerSlow;
@@ -16,7 +17,7 @@ public class spreadDamageTower : MonoBehaviour
 
     void Awake()
     {
-
+        header = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -28,12 +29,12 @@ public class spreadDamageTower : MonoBehaviour
         coolDown += Time.deltaTime;
 
 
-        Debug.Log("sprinkler going off, going on " + angleList[currentIndex] + " degrees");
+        //Debug.Log("sprinkler going off, going on " + angleList[currentIndex] + " degrees");
         if (attackIsOffCooldown())
         {
             changeOfIndex();
-            Debug.Log("sprinkler off cooldown, changing angle now");
-            this.transform.rotation = Quaternion.Euler(0,angleList[currentIndex],0);
+            //Debug.Log("sprinkler off cooldown, changing angle now");
+            header.transform.rotation = Quaternion.Euler(0,angleList[currentIndex],0);
             shootBullet();
         } 
 
@@ -80,9 +81,10 @@ public class spreadDamageTower : MonoBehaviour
 
     void shootBullet()
     {
-        Debug.Log("shoot Bullet method has been called by sprinkler");
         projectileFollow newProjectile = GameObject.Instantiate(projectilePrefab, this.transform.position, Quaternion.identity);
-        newProjectile.gameObject.transform.rotation = transform.rotation;
-        
+        newProjectile.gameObject.transform.rotation = header.transform.rotation;
+        //here is where the sound for the sprinkler should be played
+        SoundManager.Instance.PlayOnce(SoundFX.TennisBallLaunch);
+
     }
 }

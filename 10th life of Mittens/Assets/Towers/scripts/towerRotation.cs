@@ -10,7 +10,6 @@ public class towerRotation : MonoBehaviour
     private GameObject enemyLocation;
     private float rotationStep;
     private Vector3 targetDirection;
-    
 
     void Awake()
     {

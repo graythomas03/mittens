@@ -31,7 +31,7 @@ public class EnemeyAI : MonoBehaviour
     void Start()
     {
         //this is the percent scaled
-        float percent = Random.Range(1 - scaleMultiplier,1 + scaleMultiplier);
+        float percent = Random.Range(1 - scaleMultiplier, 1 + scaleMultiplier);
         Vector3 scale = this.transform.localScale;
         scale.x *= percent;
         scale.z *= percent;

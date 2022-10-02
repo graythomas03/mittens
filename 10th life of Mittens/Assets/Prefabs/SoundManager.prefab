@@ -53,10 +53,29 @@ MonoBehaviour:
     ShouldBeMute: 1
   - Source: {fileID: 5379567993887873206}
     ShouldBeMute: 1
-  musicFadeRate: 0.02
+  musicFadeRate: 0.8
+  maxVolume: 0.9
   soundFXList:
-  - Clip: {fileID: 0}
+  - Clips: []
     FX: 0
+  - Clips: []
+    FX: 1
+  - Clips: []
+    FX: 2
+  - Clips: []
+    FX: 3
+  - Clips: []
+    FX: 4
+  - Clips: []
+    FX: 5
+  - Clips: []
+    FX: 6
+  - Clips: []
+    FX: 7
+  - Clips: []
+    FX: 8
+  - Clips: []
+    FX: 9
   soundFXSource: {fileID: 6307231433263713828}
 --- !u!1 &5379567993887873201
 GameObject:
