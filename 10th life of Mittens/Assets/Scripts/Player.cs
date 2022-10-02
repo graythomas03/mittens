@@ -32,8 +32,8 @@ public class Player : MonoBehaviour
     }
 
     void Start() {
-        this.tag = "player";
-        enemyTag = "enemy";
+        this.tag = "Player";
+        enemyTag = "Enemy";
     }
 
 // update player movement every tick
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         _input.Player.Swipe.canceled += ctx => swipeEvent = false;
 
         // check for drag event (only if player)
-        if(this.tag.Equals("player")) {
+        if(this.tag.Equals("Player")) {
             _input.Player.Drag.performed += ctx => dragEvent = true;
             _input.Player.Drag.canceled += ctx => dragEvent = false;
         }
@@ -73,8 +73,8 @@ public class Player : MonoBehaviour
 
 /** GAMEMANAGER METHODS **/
     public void changeSide() {
-        this.tag = "enemy";
-        enemyTag = "player";    // or whichever tag turret bullets use
+        this.tag = "Enemy";
+        enemyTag = "Player";    // or whichever tag turret bullets use
     }
 
 /** INTERNAL METHODS **/
@@ -98,8 +98,8 @@ public class Player : MonoBehaviour
         }
 
         // if player hits enemy
-        GameObject enemy = collision.collider.GetComponent<GameObject>();
-        if(enemy.tag.Equals("enemy")) {
+        GameObject enemy = collision.collider.gameObject;
+        if(enemy.tag.Equals("Enemy")) {
             GameManager.Instance.LoseLife();
         }
     }
@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
     private void GrabDraggable(Draggable target, Collision collision)
     {
         // make sure player cant move already placed objects
+        Debug.Log(target.isPlaced());
         if(target.isPlaced())
             return;
 
