@@ -99,8 +99,11 @@ public class SoundManager : MonoBehaviour
         {
             if(entry.FX == fx)
             {
-                int size = entry.Clips.Length;
-                clip = entry.Clips[Random.Range(0, size)];
+                if(entry.Clips != null && entry.Clips.Length > 0)
+                {
+                    int size = entry.Clips.Length;
+                    clip = entry.Clips[Random.Range(0, size)];
+                }
             }
         }
 
