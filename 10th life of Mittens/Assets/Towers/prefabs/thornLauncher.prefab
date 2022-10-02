@@ -157,12 +157,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1940649335, guid: a296858a741bdd44786a9f43ca8baaf4, type: 3}
+  m_Sprite: {fileID: 1944773975, guid: 2bcf824c8f23729409849c752916a127, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.34, y: 3.94}
+  m_Size: {x: 5.6, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 7842094601339708273}
   - component: {fileID: 135248833}
   m_Layer: 0
-  m_Name: tennisBallLauncher
+  m_Name: thornLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,10 +303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ea90bc715573b499b50a22ec7811a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
-  trapRange: 10
-  attackCoolDownTimer: 2
-  projectilePrefab: {fileID: 7947660422996723656, guid: 2f0160769e1c98d4cbe6a2fe1911933a, type: 3}
+  damage: 2
+  trapRange: 20
+  attackCoolDownTimer: 0.75
+  projectilePrefab: {fileID: 7947660422996723656, guid: 520e3fd8ab800ed499a79bde8aed39b1, type: 3}
   towerROT: {fileID: 1446705177638968648}
 --- !u!114 &1446705177638968648
 MonoBehaviour:
@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d18b22c7f736646a49e704db0d672f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerRotationSpeed: 5
-  towerRange: 10
+  towerRotationSpeed: 10
+  towerRange: 20
   heading: {fileID: 7016583121207871332}
 --- !u!135 &5728025733426736913
 SphereCollider:
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4842b9ff755bf9b44a50e0ccd9c95114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 3
+  weight: 2
 --- !u!54 &7842094601339708273
 Rigidbody:
   m_ObjectHideFlags: 0
