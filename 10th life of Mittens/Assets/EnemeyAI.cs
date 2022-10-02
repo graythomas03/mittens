@@ -73,7 +73,7 @@ public class EnemeyAI : MonoBehaviour
 
         //CHECK FOR TOO MANY ZOMBIES HERE
 
-        if( WaveManager.Instance.CanChase(gameObject) && result < chaseDistance){
+        if(player.CompareTag("Player") && WaveManager.Instance.CanChase(gameObject) && result < chaseDistance){
             //set destination to player
             Nav.SetDestination(player.transform.position);
             WaveManager.Instance.StartChasing(gameObject);
