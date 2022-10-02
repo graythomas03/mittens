@@ -41,7 +41,9 @@ public class MainMenu : MonoBehaviour
 
     private void GoBack()
     {
+        SoundManager.Instance.ToggleCredit(false);
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
+        SoundManager.Instance.ToggleTitle(true);
         ShowMainPanel();
     }
 
@@ -68,6 +70,8 @@ public class MainMenu : MonoBehaviour
 
     private void ShowCreditPanel()
     {
+        SoundManager.Instance.ToggleTitle(false);
+        SoundManager.Instance.ToggleCredit(true);
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         MainPanel.SetActive(false);
         CreditsPanel.SetActive(true);

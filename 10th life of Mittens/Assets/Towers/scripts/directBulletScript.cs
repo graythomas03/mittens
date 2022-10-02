@@ -45,7 +45,7 @@ public class directBulletScript : MonoBehaviour
     GameObject checkEnemyInSight()
     {
         //returns a list of all colliders within trap range radius around trap position
-        Collider[] hitColliders = Physics.OverlapSphere(trapPosition, trapRange);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, trapRange);
         if (hitColliders != null)
         {
             //Debug.Log("hit colliders is not null, now parsing through each collider in hitCollider");
@@ -73,6 +73,7 @@ public class directBulletScript : MonoBehaviour
     {
         projectileFollow newProjectile = GameObject.Instantiate(projectilePrefab, this.transform.position, Quaternion.identity);
         newProjectile.setTargetLocation(shootPosition);
+        newProjectile.SetDamage(damage);
         //here is where the sound for shooting tennis ball should be played
         SoundManager.Instance.PlayOnce(SoundFX.TennisBallLaunch);
     }

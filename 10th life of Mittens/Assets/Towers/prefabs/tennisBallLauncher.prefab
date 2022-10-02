@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
-  trapRange: 50
+  trapRange: 10
   attackCoolDownTimer: 2
   projectilePrefab: {fileID: 7947660422996723656, guid: 2f0160769e1c98d4cbe6a2fe1911933a, type: 3}
   towerROT: {fileID: 1446705177638968648}
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerRotationSpeed: 5
-  towerRange: 5
+  towerRange: 10
   heading: {fileID: 7016583121207871332}
 --- !u!135 &5728025733426736913
 SphereCollider:
@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4842b9ff755bf9b44a50e0ccd9c95114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weight: 3
 --- !u!54 &7842094601339708273
 Rigidbody:
   m_ObjectHideFlags: 0

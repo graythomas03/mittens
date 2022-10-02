@@ -113,7 +113,7 @@ public class WaveManager : MonoBehaviour
         gm = GameManager.Instance;
         enemyPrefab.SetActive(false);
         enemyList = new List<GameObject>();
-        Debug.Log(waveStarted);
+        //Debug.Log(waveStarted);
         waveTimer = WaveStartDelay;
         currentChasing = new List<GameObject>();
     }
@@ -159,7 +159,7 @@ public class WaveManager : MonoBehaviour
         //     Vector3 spawnPos = new Vector3(spawn.position.x +Random.Range(-enemySpawnPosVar,enemySpawnPosVar), spawn.position.y, spawn.position.z + Random.Range(-enemySpawnPosVar,enemySpawnPosVar));
         //     enemyList.Add(Instantiate(enemyPrefab, spawnPos, spawn.rotation));
         // }
-        Debug.Log("setup wave");
+        //Debug.Log("setup wave");
         waveStarted = false;
         waveTimer = WaveStartDelay;
         currentWaveSpawnCount = (int)(enemySpawnCount * Mathf.Pow(1 + enemySpawnIncrease,currentWave - 1));
@@ -167,7 +167,7 @@ public class WaveManager : MonoBehaviour
     }
 
     void StartWave(){
-        Debug.Log("Start wave");
+        //Debug.Log("Start wave");
         waveStarted = true;
     }
 
@@ -293,11 +293,16 @@ public class WaveManager : MonoBehaviour
 
     public void DamagePlayer(){
         
-        if(currentWave == 10){
+        if(gm.GetLife() >= 9){
             gm.LoseLife();
         }
         else{
             LoseWave();
         }
+    }
+
+    public GameObject GetPlayer()
+    {
+        return player;
     }
 }

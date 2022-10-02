@@ -35,6 +35,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource title;
 
+    [SerializeField]
+    private AudioSource credits;
+
     [SerializeField] 
     private MusicSources[] musicSources;
 
@@ -45,13 +48,17 @@ public class SoundManager : MonoBehaviour
     [Range(0f,1f)]
     private float maxVolume;
 
+    [SerializeField]
+    private bool muteInsteadOfFade;
+
     [Header("SoundFX")]
     [SerializeField]
     private SoundFXClip[] soundFXList;
 
+
+
     public AudioSource soundFXSource;
     private static SoundManager _instance;
-
 
     public static SoundManager Instance
     {
@@ -78,11 +85,17 @@ public class SoundManager : MonoBehaviour
             return;
         }
         _instance = this;
+        UpdateAudioSourceState();
     }
 
     public void ToggleTitle(bool isOn)
     {
         title.volume = isOn ? 1f : 0f;
+    }
+
+    public void ToggleCredit(bool isOn)
+    {
+        credits.volume = isOn ? 1f : 0f;
     }
 
     public void Toggle(bool isOn, params int[] indexes)
@@ -91,7 +104,7 @@ public class SoundManager : MonoBehaviour
         {
             if(i >= 0 && i < indexes.Length)
             {
-                musicSources[i].ShouldBeMute = isOn;
+                musicSources[i].ShouldBeMute = !isOn;
             }
         }
 
@@ -134,20 +147,30 @@ public class SoundManager : MonoBehaviour
             var source = musicSources[i].Source;
             var shouldBeMuted = musicSources[i].ShouldBeMute;
 
-            if (shouldBeMuted && source.volume > 0)
+            if(muteInsteadOfFade)
             {
-                source.volume -= musicFadeRate * Time.deltaTime;
-                if (source.volume <= 0)
+                if(source.mute != shouldBeMuted)
                 {
-                    source.volume = 0;
+                    source.mute = shouldBeMuted;
                 }
             }
-            else if (!shouldBeMuted && source.volume < maxVolume)
+            else
             {
-                source.volume += musicFadeRate * Time.deltaTime;
-                if (source.volume >= maxVolume)
+                if (shouldBeMuted && source.volume > 0)
                 {
-                    source.volume = maxVolume;
+                    source.volume -= musicFadeRate * Time.deltaTime;
+                    if (source.volume <= 0)
+                    {
+                        source.volume = 0;
+                    }
+                }
+                else if (!shouldBeMuted && source.volume < maxVolume)
+                {
+                    source.volume += musicFadeRate * Time.deltaTime;
+                    if (source.volume >= maxVolume)
+                    {
+                        source.volume = maxVolume;
+                    }
                 }
             }
         }

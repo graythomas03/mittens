@@ -85,17 +85,23 @@ public class projectileFollow : MonoBehaviour
         return false;
     }
 
-    void OnCollisionEnter(Collision col){
-        GameObject other = col.collider.gameObject;
+    void OnTriggerEnter(Collider col){
+        
+        GameObject other = col.gameObject;
+        Debug.Log(other.tag);
         if(other.tag == enemyTag){
             //damage target
-                Health targetsHealth = targetLocation.gameObject.GetComponent<Health>();
+                Health targetsHealth = other.GetComponent<Health>();
                 if (targetsHealth != null)
                 {
                     targetsHealth.takeDamage(damage);
                 }
                 //destroys the bullet (not the object that it gets close to)
                 Destroy(this.gameObject);
+        }
+        else if(other.tag == obstacleTag)
+        {
+            Destroy(gameObject);
         }
     }
 }
