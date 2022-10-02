@@ -38,7 +38,13 @@ public class projectileFollow : MonoBehaviour
             //if reached target then destroy bullet game object
             if (Vector3.Distance(this.transform.position, targetLocation.position) <= collideRange)
             {
-               Destroy(this.gameObject);
+                //damage target
+                Health targetsHealth = targetLocation.gameObject.GetComponent<Health>();
+                if (targetsHealth != null)
+                {
+                    targetsHealth.takeDamage(1);
+                }
+                Destroy(this.gameObject);
             }
         }
 
