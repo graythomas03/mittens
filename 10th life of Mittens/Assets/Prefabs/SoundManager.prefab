@@ -177,7 +177,7 @@ MonoBehaviour:
   title: {fileID: 4393019348520245383}
   musicSources:
   - Source: {fileID: 5379567994999148506}
-    ShouldBeMute: 0
+    ShouldBeMute: 1
   - Source: {fileID: 5379567995616387929}
     ShouldBeMute: 1
   - Source: {fileID: 5379567993887873206}
