@@ -81,9 +81,10 @@ public class spreadDamageTower : MonoBehaviour
 
     void shootBullet()
     {
-        //Debug.Log("shoot Bullet method has been called by sprinkler");
         projectileFollow newProjectile = GameObject.Instantiate(projectilePrefab, this.transform.position, Quaternion.identity);
         newProjectile.gameObject.transform.rotation = header.transform.rotation;
-        
+        //here is where the sound for the sprinkler should be played
+        SoundManager.Instance.PlayOnce(SoundFX.TennisBallLaunch);
+
     }
 }

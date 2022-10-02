@@ -14,15 +14,20 @@ public class GameManager : MonoBehaviour
     /**the pause menu UI*/
     [SerializeField]private GameObject pauseUI;
     /**the wave counter text box*/
-    [SerializeField]private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     /**The life the cat is currently on. Starts at 1 and ends at 10*/
     [SerializeField]private int currentLife;
+    [SerializeField]private int totalLives;
     /**the current wave. Updated by waveMan*/
     private int currentWave = 1;
     /**if the game is currently started or not*/
     [SerializeField]private bool gameStarted;
     /**if the game is currently paused*/
-    [SerializeField]private bool paused;
+    [SerializeField] private bool paused;
+    private bool canPause = true;
+    private int score = 0;
+
     [Tooltip("Current Game Manager")]
     private static GameManager _instance;
     public static GameManager Instance
@@ -74,7 +79,7 @@ public class GameManager : MonoBehaviour
         currentLife++;
         GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
 
-        for (int i = 0; i < heartsPanel.transform.childCount; i++)
+        for (int i = 0; i < totalLives; i++)
         {
             GameObject image = heartsPanel.transform.GetChild(i).gameObject;
             Animator animator = image.GetComponent<Animator>();
@@ -93,6 +98,7 @@ public class GameManager : MonoBehaviour
             if (currentLife == 9)
             {
                 // Give the last heart time to decay (0.45sec) and wait a moment before starting to refill health bar
+                canPause = false;
                 StartCoroutine(ZombifyHearts());
             }
         }
@@ -100,10 +106,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ZombifyHearts()
     {
-        // Pause to give the 9th heart time to die
+        // Pause to give the 9th heart time to die; disable pausing during this
         yield return new WaitForSeconds(1f);
         GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
-        for (int i = heartsPanel.transform.childCount - 1; i > -1; i--)
+        for (int i = totalLives - 1; i > -1; i--)
         {
             GameObject image = heartsPanel.transform.GetChild(i).gameObject;
             Animator animator = image.GetComponent<Animator>();
@@ -113,6 +119,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartTenthLife();
+        canPause = true;
         StopCoroutine(ZombifyHearts());
     }
 
@@ -120,6 +127,12 @@ public class GameManager : MonoBehaviour
     public void StartTenthLife()
     {
 
+    }
+
+    public void AddPoints(int val)
+    {
+        score += val;
+        scoreText.text = "Score: " + score;
     }
 
     public bool Paused(){
@@ -135,6 +148,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame(){
+        SoundManager.Instance.ToggleTitle(false);
+        SoundManager.Instance.Toggle(true, 0);
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(true);
         gameStarted = true;
@@ -147,6 +163,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainMenu(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
+        SoundManager.Instance.Toggle(false, 0, 1, 2);
         paused = false;
         gameStarted = false;
         ResetGame();
@@ -156,20 +174,43 @@ public class GameManager : MonoBehaviour
     }
 
     public void PauseGame(){
-        paused = true;
-        pauseUI.SetActive(true);
-        inGameUI.SetActive(false);
+        if (canPause)
+        {
+            SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
+            paused = true;
+            pauseUI.SetActive(true);
+
+            GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+
+            for (int i = 0; i < totalLives; i++)
+            {
+                GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+                image.GetComponent<Animator>().enabled = false;
+            }
+        }
     }
 
     public void UnpauseGame(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         paused = false;
         pauseUI.SetActive(false);
-        inGameUI.SetActive(true);
+
+        GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+
+        for (int i = 0; i < heartsPanel.transform.childCount; i++)
+        {
+            GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+            image.GetComponent<Animator>().enabled = true;
+        }
     }
 
     public void UpdateWave(int wave){
         currentWave = wave;
         waveText.text = "Wave " + currentWave;
+    }
+
+    public int GetLife(){
+        return currentLife;
     }
 
     

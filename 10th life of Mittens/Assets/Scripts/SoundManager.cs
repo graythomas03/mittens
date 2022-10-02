@@ -2,7 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundFX { HitEnemy };
+    public enum SoundFX { 
+        HitEnemy,
+        TennisBallLaunch,
+        SprinlerSpray,
+        BombBlast,
+        CatMove,
+        CatSwipe,
+        CatDrag,
+        GameOver,
+        ReadySetGo,
+        SFXButton
+    };
+
 public class SoundManager : MonoBehaviour
 {
     [System.Serializable]
@@ -15,11 +27,14 @@ public class SoundManager : MonoBehaviour
     [System.Serializable]
     public class SoundFXClip
     {
-        public AudioClip Clip;
+        public AudioClip[] Clips;
         public SoundFX FX;
     }
 
     [Header("Music")]
+    [SerializeField]
+    private AudioSource title;
+
     [SerializeField] 
     private MusicSources[] musicSources;
 
@@ -35,6 +50,40 @@ public class SoundManager : MonoBehaviour
     private SoundFXClip[] soundFXList;
 
     public AudioSource soundFXSource;
+    private static SoundManager _instance;
+
+
+    public static SoundManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<SoundManager>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject();
+                    _instance = go.AddComponent<SoundManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake(){
+        if (Instance != this)
+        {
+            Destroy(this.gameObject);
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+    }
+
+    public void ToggleTitle(bool isOn)
+    {
+        title.volume = isOn ? 1f : 0f;
+    }
 
     public void Toggle(bool isOn, params int[] indexes)
     {
@@ -56,7 +105,11 @@ public class SoundManager : MonoBehaviour
         {
             if(entry.FX == fx)
             {
-                clip = entry.Clip;
+                if(entry.Clips != null && entry.Clips.Length > 0)
+                {
+                    int size = entry.Clips.Length;
+                    clip = entry.Clips[Random.Range(0, size)];
+                }
             }
         }
 
