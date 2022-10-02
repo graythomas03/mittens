@@ -210,7 +210,7 @@ public class WaveManager : MonoBehaviour
             }
             Destroy(enemy);
             enemiesKilled++;
-            //gm.ScorePoints(pointsPerZombieKill);
+            gm.AddPoints(pointsPerZombieKill);
         }
         else{
             Debug.LogWarning("enemy not detected on Kill call");
@@ -238,7 +238,7 @@ public class WaveManager : MonoBehaviour
         if(loseLifeOnWin){
             gm.LoseLife();
         }
-        //gm.ScorePoints(waveMult * currentWave * pointsPerWaveClear);
+        gm.AddPoints(waveMult * currentWave * pointsPerWaveClear);
         EndWave();
     }
 
