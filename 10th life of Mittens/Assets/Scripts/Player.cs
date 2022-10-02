@@ -12,8 +12,13 @@ public class Player : MonoBehaviour
     Draggable grabbedObj;
     Droppable heldObj;
 
+    [SerializeField] private Animator animator;
+
     private bool dragEvent = false;
     private bool swipeEvent = false;
+
+    private bool walking = false;
+    private bool holding = false;
 
     private string enemyTag;    // tag of GameObjects player should be able to attack
 
@@ -42,6 +47,25 @@ public class Player : MonoBehaviour
         var dirVec = _input.Player.Move.ReadValue<Vector2>();
         _dirVec.x = dirVec.x;
         _dirVec.z = dirVec.y;
+
+        if (dirVec.x != 0 || dirVec.y != 0)
+        {
+            //Movement this frame
+            if (!walking)
+            {
+                walking = true;
+                //animator.SetBool("Walking", true);
+            }
+        }
+        else
+        {
+            //No movement this frame
+            if (walking)
+            {
+                walking = false;
+                //animator.SetBool("Walking", false);
+            }
+        }
 
         _rbody.velocity = _moveSpeed * _dirVec;
 
@@ -117,6 +141,8 @@ public class Player : MonoBehaviour
         grabJoint.connectedBody = collision.GetContact(0).otherCollider.transform.GetComponentInParent<Rigidbody>();
         grabJoint.enableCollision = false;
         target.ToggleFixedPosition(false);
+
+        //animator.SetBool("Holding", true);
     }
 
     private void ReleaseDraggable()
@@ -124,5 +150,7 @@ public class Player : MonoBehaviour
         grabbedObj.ToggleFixedPosition(true);
         Destroy(GetComponent<FixedJoint>());
         grabbedObj = null;
+
+        //animator.SetBool("Holding", false);
     }
 }

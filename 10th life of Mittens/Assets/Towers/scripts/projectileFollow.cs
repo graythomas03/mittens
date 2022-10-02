@@ -14,6 +14,12 @@ public class projectileFollow : MonoBehaviour
     [SerializeField] private float desiredDurationOfProjectile;
     private float projectileDuration;
 
+    private int damage = 1;
+
+    public string enemyTag = "Enemy";
+
+    public string obstacleTag = "Obstacle";
+
     void Awake()
     {
         projectilePosition = this.transform.position;
@@ -64,6 +70,10 @@ public class projectileFollow : MonoBehaviour
         targetLocation = target;
     }
 
+    public void SetDamage(int damageT){
+            damage = damageT;
+    }
+
     private bool projectileExpired()
     {
         if (projectileDuration >= desiredDurationOfProjectile)
@@ -73,5 +83,21 @@ public class projectileFollow : MonoBehaviour
 
 
         return false;
+    }
+
+    void OnCollisionEnter(Collision col){
+        
+        GameObject other = col.collider.gameObject;
+        Debug.Log(other.tag);
+        if(other.tag == enemyTag){
+            //damage target
+                Health targetsHealth = targetLocation.gameObject.GetComponent<Health>();
+                if (targetsHealth != null)
+                {
+                    targetsHealth.takeDamage(damage);
+                }
+                //destroys the bullet (not the object that it gets close to)
+                Destroy(this.gameObject);
+        }
     }
 }
