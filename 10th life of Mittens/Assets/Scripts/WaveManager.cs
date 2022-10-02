@@ -74,7 +74,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField][Tooltip("the current wave")]public int currentWave = 1;
     
 
-
+    [Header("Score fields")]
+    [SerializeField][Tooltip("points per zombie kill")]public int pointsPerZombieKill = 10;
+    [SerializeField][Tooltip("points per wave clear")]public int pointsPerWaveClear = 1000;
+    [SerializeField][Tooltip("how drastically the waves affect clear points (waveMult * wave *pointsPerWaveClear")]public int waveMult = 1;
     
 
     public static WaveManager Instance
@@ -207,6 +210,7 @@ public class WaveManager : MonoBehaviour
             }
             Destroy(enemy);
             enemiesKilled++;
+            //gm.ScorePoints(pointsPerZombieKill);
         }
         else{
             Debug.LogWarning("enemy not detected on Kill call");
@@ -234,6 +238,7 @@ public class WaveManager : MonoBehaviour
         if(loseLifeOnWin){
             gm.LoseLife();
         }
+        //gm.ScorePoints(waveMult * currentWave * pointsPerWaveClear);
         EndWave();
     }
 
