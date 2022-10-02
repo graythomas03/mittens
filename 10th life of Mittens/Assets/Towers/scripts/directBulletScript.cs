@@ -45,7 +45,7 @@ public class directBulletScript : MonoBehaviour
     GameObject checkEnemyInSight()
     {
         //returns a list of all colliders within trap range radius around trap position
-        Collider[] hitColliders = Physics.OverlapSphere(trapPosition, trapRange);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, trapRange);
         if (hitColliders != null)
         {
             //Debug.Log("hit colliders is not null, now parsing through each collider in hitCollider");
