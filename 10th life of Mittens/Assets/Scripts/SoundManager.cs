@@ -77,7 +77,8 @@ public class SoundManager : MonoBehaviour
             var source = musicSources[i].Source;
             var shouldBeMuted = musicSources[i].ShouldBeMute;
 
-            if (source.mute != shouldBeMuted)
+            var isMuted = source.volume <= 0;
+            if (isMuted != shouldBeMuted)
             {
                 if(shouldBeMuted)
                 {
@@ -85,7 +86,6 @@ public class SoundManager : MonoBehaviour
                     if(source.volume <= 0)
                     {
                         source.volume = 0;
-                        source.mute = true;
                     }
                 }
                 else
@@ -94,7 +94,6 @@ public class SoundManager : MonoBehaviour
                     if (source.volume >= 1)
                     {
                         source.volume = 1;
-                        source.mute = false;
                     }
                 }
             }
