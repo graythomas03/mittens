@@ -305,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   trapRange: 10
-  attackCoolDownTimer: 1.25
+  attackCoolDownTimer: 2.5
   projectilePrefab: {fileID: 7947660422996723656, guid: 520e3fd8ab800ed499a79bde8aed39b1, type: 3}
   towerROT: {fileID: 1446705177638968648}
 --- !u!114 &1446705177638968648
