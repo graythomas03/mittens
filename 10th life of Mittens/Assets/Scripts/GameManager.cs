@@ -17,13 +17,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TextMeshProUGUI waveText;
     /**The life the cat is currently on. Starts at 1 and ends at 10*/
     [SerializeField]private int currentLife;
+    [SerializeField]private int totalLives;
     /**the current wave. Updated by waveMan*/
     private int currentWave = 1;
     /**if the game is currently started or not*/
     [SerializeField]private bool gameStarted;
     /**if the game is currently paused*/
-    [SerializeField]private bool paused;
+    [SerializeField] private bool paused;
     private bool canPause = true;
+    private int score = 0;
 
     [Tooltip("Current Game Manager")]
     private static GameManager _instance;
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour
         currentLife++;
         GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
 
-        for (int i = 0; i < heartsPanel.transform.childCount; i++)
+        for (int i = 0; i < totalLives; i++)
         {
             GameObject image = heartsPanel.transform.GetChild(i).gameObject;
             Animator animator = image.GetComponent<Animator>();
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
         // Pause to give the 9th heart time to die; disable pausing during this
         yield return new WaitForSeconds(1f);
         GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
-        for (int i = heartsPanel.transform.childCount - 1; i > -1; i--)
+        for (int i = totalLives - 1; i > -1; i--)
         {
             GameObject image = heartsPanel.transform.GetChild(i).gameObject;
             Animator animator = image.GetComponent<Animator>();
@@ -124,6 +126,14 @@ public class GameManager : MonoBehaviour
     public void StartTenthLife()
     {
 
+    }
+
+    public void AddPoints(int val)
+    {
+        score += val;
+        GameObject bottomPanel = inGameUI.transform.GetChild(0).gameObject;
+        TextMeshPro scoreDisplay = inGameUI.transform.GetChild(totalLives).GetComponent<TextMeshPro>();
+        scoreDisplay.text = "Score: " + score;
     }
 
     public bool Paused(){
