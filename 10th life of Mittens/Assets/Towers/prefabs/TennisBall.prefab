@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TennisBall
       objectReference: {fileID: 0}
+    - target: {fileID: 6640332786167907525, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
+      propertyPath: projectileSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9016703290578901201, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
       propertyPath: m_RootOrder
       value: 0
