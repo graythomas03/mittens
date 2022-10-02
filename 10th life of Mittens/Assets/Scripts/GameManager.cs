@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(true);
         gameStarted = true;
@@ -151,6 +152,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainMenu(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         paused = false;
         gameStarted = false;
         ResetGame();
@@ -162,6 +164,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame(){
         if (canPause)
         {
+            SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
             paused = true;
             pauseUI.SetActive(true);
 
@@ -176,6 +179,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void UnpauseGame(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         paused = false;
         pauseUI.SetActive(false);
 

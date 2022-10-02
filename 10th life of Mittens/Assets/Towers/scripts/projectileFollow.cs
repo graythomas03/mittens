@@ -52,10 +52,10 @@ public class projectileFollow : MonoBehaviour
         this.transform.position += this.transform.forward * projectileSpeed * Time.deltaTime;
 
         if (projectileExpired())
-            {
-               Destroy(this.gameObject);
-            }
-        
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
     public void setTargetLocation(Transform target)

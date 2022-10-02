@@ -2,7 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundFX { HitEnemy, TennisBallLaunch, SprinlerSpray, BombBlast, CatMove, CatSwipe, CatDrag, GameOver, ReadySetGo, SFXButton };
+    public enum SoundFX { 
+        HitEnemy,
+        TennisBallLaunch,
+        SprinlerSpray,
+        BombBlast,
+        CatMove,
+        CatSwipe,
+        CatDrag,
+        GameOver,
+        ReadySetGo,
+        SFXButton
+    };
+
 public class SoundManager : MonoBehaviour
 {
     [System.Serializable]
@@ -15,7 +27,7 @@ public class SoundManager : MonoBehaviour
     [System.Serializable]
     public class SoundFXClip
     {
-        public AudioClip Clip;
+        public AudioClip[] Clips;
         public SoundFX FX;
     }
 
@@ -87,7 +99,8 @@ public class SoundManager : MonoBehaviour
         {
             if(entry.FX == fx)
             {
-                clip = entry.Clip;
+                int size = entry.Clips.Length;
+                clip = entry.Clips[Random.Range(0, size)];
             }
         }
 

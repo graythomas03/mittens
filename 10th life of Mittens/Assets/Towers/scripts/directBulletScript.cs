@@ -74,7 +74,7 @@ public class directBulletScript : MonoBehaviour
         projectileFollow newProjectile = GameObject.Instantiate(projectilePrefab, this.transform.position, Quaternion.identity);
         newProjectile.setTargetLocation(shootPosition);
         //here is where the sound for shooting tennis ball should be played
-        
+        SoundManager.Instance.PlayOnce(SoundFX.TennisBallLaunch);
     }
 
     bool attackIsOffCooldown()
