@@ -11,6 +11,8 @@ public class towerRotation : MonoBehaviour
     private float rotationStep;
     private Vector3 targetDirection;
 
+    public GameObject heading;
+
     void Awake()
     {
         towerLocation = this.gameObject.transform;
@@ -26,7 +28,7 @@ public class towerRotation : MonoBehaviour
 
             var rotation = Quaternion.LookRotation(targetDirection);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * towerRotationSpeed);
+            heading.transform.rotation = Quaternion.Slerp(heading.transform.rotation, rotation, Time.deltaTime * towerRotationSpeed);
 
         }
     }
