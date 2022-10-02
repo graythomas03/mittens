@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 guid: e88bfc237b053c544b88408d7ea1a23f
-=======
-guid: 8d7038232dd0b8ba89bcf0871595e927
->>>>>>> Stashed changes
-=======
-guid: 2bcf824c8f23729409849c752916a127
->>>>>>> DEV
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -109,21 +101,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< Updated upstream
-=======
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
->>>>>>> Stashed changes
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -132,8 +109,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 310
-        y: 240
-        width: 560
+        y: 230
+        width: 550
         height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -142,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c87b8fc3f300b147be037a4233016a8
-      internalID: 1944773975
+      spriteID: b4a00144e0b6db948a5671617d128f28
+      internalID: 1161287030
       vertices: []
       indices: 
       edges: []
@@ -152,9 +129,9 @@ TextureImporter:
       name: shootyBush_1
       rect:
         serializedVersion: 2
-        x: 870
-        y: 240
-        width: 560
+        x: 860
+        y: 230
+        width: 550
         height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad3fe034a5e08f745ad525d86c6e32ed
-      internalID: 754596335
+      spriteID: b4a9c3146ebead944ac5732aa9c5a9e9
+      internalID: 1205720551
       vertices: []
       indices: 
       edges: []
@@ -172,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 63a3cfcd644592f4e84d983ac40c7ba3
+    spriteID: 97c51c3fba4f0844db46221120d503c5
     internalID: 0
     vertices: []
     indices: 
@@ -180,8 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      shootyBush_0: 1944773975
-      shootyBush_1: 754596335
+      shootyBush_0: 1161287030
+      shootyBush_1: 1205720551
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
