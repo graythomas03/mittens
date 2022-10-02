@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         // if player hits enemy
         GameObject enemy = collision.collider.gameObject;
         if(enemy.tag.Equals("Enemy")) {
-            GameManager.Instance.LoseLife();
+            WaveManager.Instance.DamagePlayer();
         }
     }
 

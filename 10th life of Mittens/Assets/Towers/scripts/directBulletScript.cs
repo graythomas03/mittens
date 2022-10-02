@@ -11,10 +11,10 @@ public class directBulletScript : MonoBehaviour
     private float cooldownTimer = Mathf.Infinity;
     private float rotationTowardsEnemy;
     [SerializeField] private float attackCoolDownTimer;
-    [SerializeField] private LayerMask EnemyLayer;
     [SerializeField] private projectileFollow projectilePrefab;
     private Transform enemyLocation;
     [SerializeField] private towerRotation towerROT;
+    private SoundFX TennisBallLaunch;
 
     void Awake()
     {
