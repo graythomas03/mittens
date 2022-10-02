@@ -100,8 +100,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ZombifyHearts()
     {
+        // Pause to give the 9th heart time to die
+        yield return new WaitForSeconds(1f);
         GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
-        for (int i = heartsPanel.transform.childCount - 1; i > -1; i++)
+        for (int i = heartsPanel.transform.childCount - 1; i > -1; i--)
         {
             GameObject image = heartsPanel.transform.GetChild(i).gameObject;
             Animator animator = image.GetComponent<Animator>();
