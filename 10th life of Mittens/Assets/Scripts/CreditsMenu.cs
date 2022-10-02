@@ -24,14 +24,14 @@ public class CreditsMenu : MonoBehaviour
     private void NextImage()
     {
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
-        currentImageIndex++;
+        currentImageIndex--;
         SetCurrentImage();
     }
 
     private void PreviousImage()
     {
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
-        currentImageIndex--;
+        currentImageIndex++;
         SetCurrentImage();
     }
 
