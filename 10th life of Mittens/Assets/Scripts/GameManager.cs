@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -128,7 +129,7 @@ public class GameManager : MonoBehaviour
 
                 if (currentHealth == 0)
                 {
-                    // Lose game
+                    GameOver();
                 }
             }
         }
@@ -184,6 +185,8 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.ToggleTitle(false);
         SoundManager.Instance.Toggle(true, 0);
         score = 0;
+        currentLife = 0;
+        currentHealth = 9;
 
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(true);
@@ -193,7 +196,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void ResetGame(){
-        currentLife = 1;
+        gameOverUI.SetActive(false);
+        gameOverUI.SetActive(true);
+        score = 0;
+        currentLife = 0;
+        currentHealth = 9;
         waveMan.Reset();
     }
 
@@ -207,6 +214,7 @@ public class GameManager : MonoBehaviour
         mainMenuUI.SetActive(true);
         inGameUI.SetActive(false);
         gameOverUI.SetActive(false);
+        SceneManager.LoadScene(0);
     }
 
     public void PauseGame(){

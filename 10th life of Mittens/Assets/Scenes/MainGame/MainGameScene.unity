@@ -227,10 +227,10 @@ MonoBehaviour:
   mainMenuUI: {fileID: 727083902}
   inGameUI: {fileID: 1199308382}
   pauseUI: {fileID: 1184867052}
-  gameOverUI: {fileID: 0}
+  gameOverUI: {fileID: 1135632062}
   waveText: {fileID: 771639688}
   scoreText: {fileID: 408413141}
-  finalScoreText: {fileID: 0}
+  finalScoreText: {fileID: 2041401517}
   currentLife: 0
   gameStarted: 0
   paused: 0
@@ -2212,6 +2212,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &1135632062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1243387169, guid: cff315266fb85db449381d344903cb85, type: 3}
+  m_PrefabInstance: {fileID: 771639687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1184867052 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1291979100673333949, guid: cff315266fb85db449381d344903cb85, type: 3}
@@ -3572,6 +3577,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd540f5008cf94db1bb04f46a77cab13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2041401517 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3790947724126422715, guid: cff315266fb85db449381d344903cb85, type: 3}
+  m_PrefabInstance: {fileID: 771639687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2082460694
