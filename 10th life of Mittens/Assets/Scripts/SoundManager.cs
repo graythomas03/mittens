@@ -26,6 +26,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private float musicFadeRate;
 
+    [SerializeField]
+    [Range(0f,1f)]
+    private float maxVolume;
+
     [Header("SoundFX")]
     [SerializeField]
     private SoundFXClip[] soundFXList;
@@ -77,24 +81,20 @@ public class SoundManager : MonoBehaviour
             var source = musicSources[i].Source;
             var shouldBeMuted = musicSources[i].ShouldBeMute;
 
-            var isMuted = source.volume <= 0;
-            if (isMuted != shouldBeMuted)
+            if (shouldBeMuted && source.volume > 0)
             {
-                if(shouldBeMuted)
+                source.volume -= musicFadeRate * Time.deltaTime;
+                if (source.volume <= 0)
                 {
-                    source.volume -= musicFadeRate;
-                    if(source.volume <= 0)
-                    {
-                        source.volume = 0;
-                    }
+                    source.volume = 0;
                 }
-                else
+            }
+            else if (!shouldBeMuted && source.volume < maxVolume)
+            {
+                source.volume += musicFadeRate * Time.deltaTime;
+                if (source.volume >= maxVolume)
                 {
-                    source.volume += musicFadeRate;
-                    if (source.volume >= 1)
-                    {
-                        source.volume = 1;
-                    }
+                    source.volume = maxVolume;
                 }
             }
         }

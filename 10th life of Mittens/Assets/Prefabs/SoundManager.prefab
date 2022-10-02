@@ -53,7 +53,8 @@ MonoBehaviour:
     ShouldBeMute: 1
   - Source: {fileID: 5379567993887873206}
     ShouldBeMute: 1
-  musicFadeRate: 0.02
+  musicFadeRate: 0.8
+  maxVolume: 0.9
   soundFXList:
   - Clip: {fileID: 0}
     FX: 0
