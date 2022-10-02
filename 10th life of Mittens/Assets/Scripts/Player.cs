@@ -12,13 +12,12 @@ public class Player : MonoBehaviour
     Draggable grabbedObj;
     Droppable heldObj;
 
-    [SerializeField] private Animator animator;
+    [SerializeField] 
+    private GameObject sprite;
+    private Animator anim;
 
     private bool dragEvent = false;
     private bool swipeEvent = false;
-
-    private bool walking = false;
-    private bool holding = false;
 
     private string enemyTag;    // tag of GameObjects player should be able to attack
 
@@ -39,32 +38,23 @@ public class Player : MonoBehaviour
     void Start() {
         this.tag = "Player";
         enemyTag = "Enemy";
+
+        anim = sprite.GetComponent<Animator>();
     }
 
 // update player movement every tick
     void FixedUpdate() {
         // read player movement vector
-        var dirVec = _input.Player.Move.ReadValue<Vector2>();
-        _dirVec.x = dirVec.x;
-        _dirVec.z = dirVec.y;
+        var tmp = _input.Player.Move.ReadValue<Vector2>();
+        Vector3 dirVec = new Vector3(tmp.x, 0, tmp.y);
 
-        if (dirVec.x != 0 || dirVec.y != 0)
-        {
-            //Movement this frame
-            if (!walking)
-            {
-                walking = true;
-                //animator.SetBool("Walking", true);
-            }
-        }
-        else
-        {
-            //No movement this frame
-            if (walking)
-            {
-                walking = false;
-                //animator.SetBool("Walking", false);
-            }
+        if(dirVec != Vector3.zero) {
+            // update palyer sprite rotation
+            sprite.transform.rotation.SetFromToRotation(_dirVec, dirVec);
+
+            anim.SetBool("moving", true);
+        } else {
+            anim.SetBool("moving", false);
         }
 
         _rbody.velocity = _moveSpeed * _dirVec;
@@ -147,7 +137,7 @@ public class Player : MonoBehaviour
         grabJoint.enableCollision = false;
         target.ToggleFixedPosition(false);
 
-        //animator.SetBool("Holding", true);
+        anim.SetBool("dragging", true);
     }
 
     private void ReleaseDraggable()
@@ -156,6 +146,6 @@ public class Player : MonoBehaviour
         Destroy(GetComponent<FixedJoint>());
         grabbedObj = null;
 
-        //animator.SetBool("Holding", false);
+        anim.SetBool("dragging", false);
     }
 }
