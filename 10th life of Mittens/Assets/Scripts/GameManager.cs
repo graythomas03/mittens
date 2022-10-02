@@ -139,6 +139,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame(){
+        SoundManager.Instance.ToggleTitle(false);
+        SoundManager.Instance.Toggle(true, 0);
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(true);
@@ -153,6 +155,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu(){
         SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
+        SoundManager.Instance.Toggle(false, 0, 1, 2);
         paused = false;
         gameStarted = false;
         ResetGame();
