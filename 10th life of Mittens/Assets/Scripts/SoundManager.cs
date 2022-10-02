@@ -32,6 +32,9 @@ public class SoundManager : MonoBehaviour
     }
 
     [Header("Music")]
+    [SerializeField]
+    private AudioSource title;
+
     [SerializeField] 
     private MusicSources[] musicSources;
 
