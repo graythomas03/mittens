@@ -2,7 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundFX { HitEnemy };
+    public enum SoundFX { 
+        HitEnemy,
+        TennisBallLaunch,
+        SprinlerSpray,
+        BombBlast,
+        CatMove,
+        CatSwipe,
+        CatDrag,
+        GameOver,
+        ReadySetGo,
+        SFXButton
+    };
+
 public class SoundManager : MonoBehaviour
 {
     [System.Serializable]
@@ -15,22 +27,63 @@ public class SoundManager : MonoBehaviour
     [System.Serializable]
     public class SoundFXClip
     {
-        public AudioClip Clip;
+        public AudioClip[] Clips;
         public SoundFX FX;
     }
 
     [Header("Music")]
+    [SerializeField]
+    private AudioSource title;
+
     [SerializeField] 
     private MusicSources[] musicSources;
 
     [SerializeField]
     private float musicFadeRate;
 
+    [SerializeField]
+    [Range(0f,1f)]
+    private float maxVolume;
+
     [Header("SoundFX")]
     [SerializeField]
     private SoundFXClip[] soundFXList;
 
     public AudioSource soundFXSource;
+    private static SoundManager _instance;
+
+
+    public static SoundManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<SoundManager>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject();
+                    _instance = go.AddComponent<SoundManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake(){
+        if (Instance != this)
+        {
+            Destroy(this.gameObject);
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+    }
+
+    public void ToggleTitle(bool isOn)
+    {
+        title.volume = isOn ? 1f : 0f;
+    }
 
     public void Toggle(bool isOn, params int[] indexes)
     {
@@ -52,7 +105,11 @@ public class SoundManager : MonoBehaviour
         {
             if(entry.FX == fx)
             {
-                clip = entry.Clip;
+                if(entry.Clips != null && entry.Clips.Length > 0)
+                {
+                    int size = entry.Clips.Length;
+                    clip = entry.Clips[Random.Range(0, size)];
+                }
             }
         }
 
@@ -77,25 +134,20 @@ public class SoundManager : MonoBehaviour
             var source = musicSources[i].Source;
             var shouldBeMuted = musicSources[i].ShouldBeMute;
 
-            if (source.mute != shouldBeMuted)
+            if (shouldBeMuted && source.volume > 0)
             {
-                if(shouldBeMuted)
+                source.volume -= musicFadeRate * Time.deltaTime;
+                if (source.volume <= 0)
                 {
-                    source.volume -= musicFadeRate;
-                    if(source.volume <= 0)
-                    {
-                        source.volume = 0;
-                        source.mute = true;
-                    }
+                    source.volume = 0;
                 }
-                else
+            }
+            else if (!shouldBeMuted && source.volume < maxVolume)
+            {
+                source.volume += musicFadeRate * Time.deltaTime;
+                if (source.volume >= maxVolume)
                 {
-                    source.volume += musicFadeRate;
-                    if (source.volume >= 1)
-                    {
-                        source.volume = 1;
-                        source.mute = false;
-                    }
+                    source.volume = maxVolume;
                 }
             }
         }

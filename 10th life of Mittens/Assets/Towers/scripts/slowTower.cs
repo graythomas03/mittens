@@ -40,7 +40,7 @@ public class slowTower : MonoBehaviour
 
                 if (hitCollider.CompareTag("Enemy"))
                 {
-                    Debug.Log("enemy is in sight due to proper enemy tag");
+                    //Debug.Log("enemy is in sight due to proper enemy tag");
                     return hitCollider.gameObject;
                 }
             }

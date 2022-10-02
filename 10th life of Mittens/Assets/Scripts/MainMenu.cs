@@ -41,11 +41,13 @@ public class MainMenu : MonoBehaviour
 
     private void GoBack()
     {
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         ShowMainPanel();
     }
 
     private void StarGame()
     {
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         //SceneManager.LoadScene("GameSceneName");
         // or
         //GameManager.StartGame();
@@ -54,6 +56,7 @@ public class MainMenu : MonoBehaviour
 
     private void ExitGame()
     {
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         Application.Quit();
     }
 
@@ -65,6 +68,7 @@ public class MainMenu : MonoBehaviour
 
     private void ShowCreditPanel()
     {
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         MainPanel.SetActive(false);
         CreditsPanel.SetActive(true);
     }

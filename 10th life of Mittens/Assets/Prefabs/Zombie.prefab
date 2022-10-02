@@ -140,6 +140,8 @@ MonoBehaviour:
   AIDirection: {fileID: 0}
   player: {fileID: 0}
   chaseDistance: 25
+  scaleMultiplier: 0.3
+  disToDestination: 0.2
 --- !u!54 &2994127908511501098
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -7,7 +7,22 @@ public class GenerateDestination : MonoBehaviour
     public GameObject[] lanes;
 
     public GameObject finalDestination;
-    
+
+    private void Awake()
+    {
+
+        for (int i = 0; i < lanes.Length; i++)
+        {
+            foreach(Transform child in lanes[i].transform)
+            {
+                var meshRenderer = child.GetComponent<MeshRenderer>();
+                if(meshRenderer != null)
+                {
+                    meshRenderer.enabled = false;
+                }
+            }
+        }
+    }
     public GameObject[] getDestination()
     {
         List<GameObject> result = new List<GameObject>();

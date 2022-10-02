@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]private bool gameStarted;
     /**if the game is currently paused*/
     [SerializeField]private bool paused;
+    private bool canPause = true;
+
     [Tooltip("Current Game Manager")]
     private static GameManager _instance;
     public static GameManager Instance
@@ -72,6 +74,56 @@ public class GameManager : MonoBehaviour
 
     public void LoseLife(){
         currentLife++;
+        GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+
+        for (int i = 0; i < heartsPanel.transform.childCount; i++)
+        {
+            GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+            Animator animator = image.GetComponent<Animator>();
+
+            if (i + 1 == currentLife)
+            {
+                // Heart corresponds to the current life lost
+                animator.SetTrigger("Dies");
+            }
+            else if (currentLife == 3 || currentLife == 6)
+            {
+                // All hearts must proceed to next decay state
+                animator.SetTrigger("Decays");
+            }
+
+            if (currentLife == 9)
+            {
+                // Give the last heart time to decay (0.45sec) and wait a moment before starting to refill health bar
+                canPause = false;
+                StartCoroutine(ZombifyHearts());
+            }
+        }
+    }
+
+    IEnumerator ZombifyHearts()
+    {
+        // Pause to give the 9th heart time to die; disable pausing during this
+        yield return new WaitForSeconds(1f);
+        GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+        for (int i = heartsPanel.transform.childCount - 1; i > -1; i--)
+        {
+            GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+            Animator animator = image.GetComponent<Animator>();
+
+            animator.SetTrigger("Zombifies");
+            yield return new WaitForSeconds(.2f);
+        }
+
+        StartTenthLife();
+        canPause = true;
+        StopCoroutine(ZombifyHearts());
+    }
+
+    // Called from the ZombifyHearts coroutine, which itself runs after LoseLife()
+    public void StartTenthLife()
+    {
+
     }
 
     public bool Paused(){
@@ -87,6 +139,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame(){
+        SoundManager.Instance.ToggleTitle(false);
+        SoundManager.Instance.Toggle(true, 0);
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(true);
         gameStarted = true;
@@ -99,6 +154,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainMenu(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
+        SoundManager.Instance.Toggle(false, 0, 1, 2);
         paused = false;
         gameStarted = false;
         ResetGame();
@@ -108,15 +165,34 @@ public class GameManager : MonoBehaviour
     }
 
     public void PauseGame(){
-        paused = true;
-        pauseUI.SetActive(true);
-        inGameUI.SetActive(false);
+        if (canPause)
+        {
+            SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
+            paused = true;
+            pauseUI.SetActive(true);
+
+            GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+
+            for (int i = 0; i < heartsPanel.transform.childCount; i++)
+            {
+                GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+                image.GetComponent<Animator>().enabled = false;
+            }
+        }
     }
 
     public void UnpauseGame(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         paused = false;
         pauseUI.SetActive(false);
-        inGameUI.SetActive(true);
+
+        GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+
+        for (int i = 0; i < heartsPanel.transform.childCount; i++)
+        {
+            GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+            image.GetComponent<Animator>().enabled = true;
+        }
     }
 
     public void UpdateWave(int wave){
