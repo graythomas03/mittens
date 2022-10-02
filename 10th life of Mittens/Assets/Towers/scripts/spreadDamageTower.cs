@@ -84,6 +84,7 @@ public class spreadDamageTower : MonoBehaviour
         projectileFollow newProjectile = GameObject.Instantiate(projectilePrefab, this.transform.position, Quaternion.identity);
         newProjectile.gameObject.transform.rotation = header.transform.rotation;
         //here is where the sound for the sprinkler should be played
-        
+        SoundManager.Instance.PlayOnce(SoundFX.TennisBallLaunch);
+
     }
 }
