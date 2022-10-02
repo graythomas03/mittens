@@ -86,7 +86,9 @@ public class projectileFollow : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision col){
+        
         GameObject other = col.collider.gameObject;
+        Debug.Log(other.tag);
         if(other.tag == enemyTag){
             //damage target
                 Health targetsHealth = targetLocation.gameObject.GetComponent<Health>();
