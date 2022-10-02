@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
 
         // if player hits enemy
         GameObject enemy = collision.collider.gameObject;
-        if(enemy.tag.Equals("Enemy")) {
+        if(enemy.tag.Equals("Enemy") && gameObject.tag.Equals("Player")) {
             WaveManager.Instance.DamagePlayer();
         }
     }
@@ -134,7 +134,12 @@ public class Player : MonoBehaviour
         Debug.Log(target.isPlaced());
         if(target.isPlaced())
             return;
-
+        int weight = target.getWeight();
+        int strength = (11 - GameManager.Instance.GetLife()) / 3;
+        if( weight > strength){
+            Debug.Log("too weak to move haha lmao");
+            return;
+        }
         grabbedObj = target;
         FixedJoint grabJoint = gameObject.AddComponent<FixedJoint>();
         grabJoint.anchor = collision.GetContact(0).point;
