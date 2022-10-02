@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2019137602527771293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2019137602527771283}
+  - component: {fileID: 2019137602527771282}
+  - component: {fileID: 2019137602527771280}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2019137602527771283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019137602527771293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2019137602527771282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019137602527771293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2541d7a7c3ab0aa48a5dbd4d39a871cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseLifeOnWin: 0
+  startPos: {fileID: 0}
+  wave10StartPos: {fileID: 0}
+  player: {fileID: 0}
+  enemyPrefab: {fileID: 0}
+  enemySpawnPos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemySpawnPosVar: 0.5
+  enemyList: []
+  maxChasing: 5
+  enemySpawnCount: 50
+  enemySpawnIncrease: 0.1
+  currentWaveSpawnCount: 0
+  enemySpawnDelay: 0.7
+  enemySpawnDelayVar: 0.4
+  enemySpawnDelayIncrease: 0.05
+  waveStarted: 0
+  WaveStartDelay: 5
+  currentWave: 1
+--- !u!114 &2019137602527771280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019137602527771293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643cbae417d28c4428843f34ec0535d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveMan: {fileID: 0}
+  mainMenuUI: {fileID: 0}
+  inGameUI: {fileID: 0}
+  pauseUI: {fileID: 0}
+  waveText: {fileID: 0}
+  currentLife: 0
+  gameStarted: 0
+  paused: 0
