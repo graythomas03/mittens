@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         if(currentHealth <= 0){
             Debug.Log("health is now 0, killing enemy with the WaveManager");
-            //WaveManager.Instance.KillEnemy(gameObject);
+            WaveManager.Instance.KillEnemy(gameObject);
             //wave manager destroys the object and adds to score
         }
     }
