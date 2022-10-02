@@ -5,20 +5,20 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    [SerializeField] private int maxHealth;
-    private int currentHealth;
-    [SerializeField] private float iFrames = .5f;
-    private float iTimer = 0f;
+    [SerializeField] protected int maxHealth;
+    protected int currentHealth;
+    [SerializeField] protected float iFrames = .5f;
+    protected float iTimer = 0f;
 
 
 
-    public void takeDamage(int damage){
+    public virtual void takeDamage(int damage){
         currentHealth -= damage;
         if(iTimer >0){
             return;
         }
         else{
-            Debug.Log("yeowch");
+            //Debug.Log("yeowch");
             if(currentHealth <= 0){
                 Debug.Log("health is now 0, killing enemy with the WaveManager");
                 if(WaveManager.Instance){

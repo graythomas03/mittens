@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoseLife(){
+        Debug.Log("LOSELIFE");
+        Debug.Log("currenthealth: " + currentHealth);
+
         if (currentLife < 9)
         {
             // 9 lives mode
@@ -149,7 +152,9 @@ public class GameManager : MonoBehaviour
     // Called from the ZombifyHearts coroutine, which itself runs after LoseLife()
     public void StartTenthLife()
     {
-
+        waveMan.Life10();
+        waveMan.GetPlayer().gameObject.tag = "Enemy";
+        //waveMan.GetPlayer().gameObject.layer = LayerMask.GetMask("Enemy");
     }
 
     public void AddPoints(int val)
