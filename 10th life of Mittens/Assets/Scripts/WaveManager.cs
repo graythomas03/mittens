@@ -282,4 +282,14 @@ public class WaveManager : MonoBehaviour
             player.transform.position = wave10StartPos.transform.position;
         }
     }
+
+    public void DamagePlayer(){
+        
+        if(currentWave == 10){
+            gm.LoseLife();
+        }
+        else{
+            LoseWave();
+        }
+    }
 }
