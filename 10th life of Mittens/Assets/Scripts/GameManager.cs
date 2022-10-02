@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     /**The life the cat is currently on. Starts at 1 and ends at 10*/
     [SerializeField]private int currentLife;
-    [SerializeField]private int totalLives;
+    private int currentHealth = 9;
+    private int totalLives = 9;
     /**the current wave. Updated by waveMan*/
     private int currentWave = 1;
     /**if the game is currently started or not*/
@@ -76,30 +77,52 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoseLife(){
-        currentLife++;
-        GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
-
-        for (int i = 0; i < totalLives; i++)
+        if (currentLife < 9)
         {
-            GameObject image = heartsPanel.transform.GetChild(i).gameObject;
-            Animator animator = image.GetComponent<Animator>();
+            // 9 lives mode
+            currentLife++;
+            GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
 
-            if (i + 1 == currentLife)
+            for (int i = 0; i < totalLives; i++)
             {
-                // Heart corresponds to the current life lost
+                GameObject image = heartsPanel.transform.GetChild(i).gameObject;
+                Animator animator = image.GetComponent<Animator>();
+
+                if (i + 1 == currentLife)
+                {
+                    // Heart corresponds to the current life lost
+                    animator.SetTrigger("Dies");
+                }
+                else if (currentLife == 3 || currentLife == 6)
+                {
+                    // All hearts must proceed to next decay state
+                    animator.SetTrigger("Decays");
+                }
+
+                if (currentLife == 9)
+                {
+                    // Give the last heart time to decay (0.45sec) and wait a moment before starting to refill health bar
+                    canPause = false;
+                    StartCoroutine(ZombifyHearts());
+                }
+            }
+        }
+        else
+        {
+            //10th life mode
+            currentHealth--;
+
+            if (currentHealth > -1)
+            {
+                GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
+                GameObject image = heartsPanel.transform.GetChild(currentHealth).gameObject;
+                Animator animator = image.GetComponent<Animator>();
                 animator.SetTrigger("Dies");
-            }
-            else if (currentLife == 3 || currentLife == 6)
-            {
-                // All hearts must proceed to next decay state
-                animator.SetTrigger("Decays");
-            }
 
-            if (currentLife == 9)
-            {
-                // Give the last heart time to decay (0.45sec) and wait a moment before starting to refill health bar
-                canPause = false;
-                StartCoroutine(ZombifyHearts());
+                if (currentHealth == 0)
+                {
+                    // Lose game
+                }
             }
         }
     }
