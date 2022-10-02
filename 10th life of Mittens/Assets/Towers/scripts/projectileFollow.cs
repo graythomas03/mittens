@@ -85,9 +85,9 @@ public class projectileFollow : MonoBehaviour
         return false;
     }
 
-    void OnCollisionEnter(Collision col){
+    void OnTriggerEnter(Collider col){
         
-        GameObject other = col.collider.gameObject;
+        GameObject other = col.gameObject;
         Debug.Log(other.tag);
         if(other.tag == enemyTag){
             //damage target
@@ -98,6 +98,10 @@ public class projectileFollow : MonoBehaviour
                 }
                 //destroys the bullet (not the object that it gets close to)
                 Destroy(this.gameObject);
+        }
+        else if(other.tag == obstacleTag)
+        {
+            Destroy(gameObject);
         }
     }
 }
