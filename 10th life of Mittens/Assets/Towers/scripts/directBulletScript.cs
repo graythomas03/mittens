@@ -37,7 +37,6 @@ public class directBulletScript : MonoBehaviour
                 //Debug.Log("attack is off cooldown, now running the damage Enemy method");
                 //so the enemy will not be null at this poiont so we can shoot bullet and get the target
                 shootBullet(enemyInSight.transform);
-                damageEnemy();
             }
         }
     }
@@ -52,12 +51,6 @@ public class directBulletScript : MonoBehaviour
             //Debug.Log("hit colliders is not null, now parsing through each collider in hitCollider");
             foreach (Collider hitCollider in hitColliders)
             {
-                //Debug.Log($"{hitCollider.gameObject.name} - {hitCollider.gameObject.layer} - {EnemyLayer}");
-                //if (hitCollider.gameObject.layer == EnemyLayer)
-                //{
-                //    Debug.Log("enemy is in sight due to proper enemy layer");
-                //    return true;
-                //}
 
                 if (hitCollider.CompareTag("Enemy"))
                 {

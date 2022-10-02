@@ -44,6 +44,7 @@ public class projectileFollow : MonoBehaviour
                 {
                     targetsHealth.takeDamage(1);
                 }
+                //destroys the bullet (not the object that it gets close to)
                 Destroy(this.gameObject);
             }
         }
