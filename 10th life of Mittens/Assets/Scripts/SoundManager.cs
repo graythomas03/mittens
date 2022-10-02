@@ -32,6 +32,9 @@ public class SoundManager : MonoBehaviour
     }
 
     [Header("Music")]
+    [SerializeField]
+    private AudioSource title;
+
     [SerializeField] 
     private MusicSources[] musicSources;
 
@@ -50,7 +53,7 @@ public class SoundManager : MonoBehaviour
     private static SoundManager _instance;
 
 
-        public static SoundManager Instance
+    public static SoundManager Instance
     {
         get
         {
@@ -77,7 +80,10 @@ public class SoundManager : MonoBehaviour
         _instance = this;
     }
 
-
+    public void ToggleTitle(bool isOn)
+    {
+        title.volume = isOn ? 1f : 0f;
+    }
 
     public void Toggle(bool isOn, params int[] indexes)
     {
