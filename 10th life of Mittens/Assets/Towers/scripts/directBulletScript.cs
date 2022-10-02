@@ -71,11 +71,9 @@ public class directBulletScript : MonoBehaviour
 
     private void shootBullet(Transform shootPosition)
     {
-        //Debug.Log("shoot Bullet method has been called");
         projectileFollow newProjectile = GameObject.Instantiate(projectilePrefab, this.transform.position, Quaternion.identity);
         newProjectile.setTargetLocation(shootPosition);
-        //Instantiate(Object original, Vector3 position, Quaternion rotation);
-
+        //here is where the sound for shooting tennis ball should be played
         
     }
 
