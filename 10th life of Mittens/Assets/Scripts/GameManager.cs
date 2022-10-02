@@ -171,9 +171,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame(){
+        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
         SoundManager.Instance.ToggleTitle(false);
         SoundManager.Instance.Toggle(true, 0);
-        SoundManager.Instance.PlayOnce(SoundFX.SFXButton);
+
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(true);
         gameStarted = true;
