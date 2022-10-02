@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 169380333, guid: a296858a741bdd44786a9f43ca8baaf4, type: 3}
+  m_Sprite: {fileID: -780303804, guid: e88bfc237b053c544b88408d7ea1a23f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,15 +97,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5263169735730428948, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
       propertyPath: m_Name
-      value: TennisBall
+      value: Thorn
       objectReference: {fileID: 0}
     - target: {fileID: 6640332786167907525, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
       propertyPath: projectileSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6640332786167907525, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
-      propertyPath: desiredDurationOfProjectile
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9016703290578901201, guid: 514fe9e55a5a37e44b28bb80f271585a, type: 3}
       propertyPath: m_RootOrder
