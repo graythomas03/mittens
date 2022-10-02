@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         _input.Player.Swipe.canceled += ctx => swipeEvent = false;
 
         // check for drag event (only if player)
-        if(this.tag.equals("player")) {
+        if(this.tag.Equals("player")) {
             _input.Player.Drag.performed += ctx => dragEvent = true;
             _input.Player.Drag.canceled += ctx => dragEvent = false;
         }
@@ -99,8 +99,8 @@ public class Player : MonoBehaviour
 
         // if player hits enemy
         GameObject enemy = collision.collider.GetComponent<GameObject>();
-        if(GameObject.tag.equals("enemy")) {
-            GameManager.Instance.loseLife();
+        if(enemy.tag.Equals("enemy")) {
+            GameManager.Instance.LoseLife();
         }
     }
 
