@@ -173,7 +173,9 @@ public class WaveManager : MonoBehaviour
 
     void EndWave(){
         ClearWave();
-        SetupWave();
+        if(gm.GetLife() < 10){
+            SetupWave();
+        }
         currentWave++;
         GameManager.Instance.UpdateWave(currentWave);
     }
@@ -244,9 +246,10 @@ public class WaveManager : MonoBehaviour
 
     public void LoseWave(){
         gm.LoseLife();
-        //if(gm.GetLife() < 10){
-        SpawnPlayer();
-        //}
+        gm.AddPoints(-1000);
+        if(gm.GetLife() < 10){
+            SpawnPlayer();
+        }
         EndWave();
     }
 
@@ -263,7 +266,7 @@ public class WaveManager : MonoBehaviour
     }
 
     public bool CanChase(GameObject enemy){
-        Debug.Log("can chase: " + (currentChasing.Count < maxChasing));
+        //Debug.Log("can chase: " + (currentChasing.Count < maxChasing));
         if(currentChasing.Contains(enemy)){
             return true;
         }
