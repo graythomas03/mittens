@@ -389,3 +389,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 20
+  animator: {fileID: 6902850557491513101}
