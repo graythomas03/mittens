@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 20
-  animator: {fileID: 6902850557491513101}
+  sprite: {fileID: 167830477677253600}
 --- !u!114 &563954394871462290
 MonoBehaviour:
   m_ObjectHideFlags: 0
