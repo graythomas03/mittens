@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SoundFX { HitEnemy };
+public enum SoundFX { HitEnemy, TennisBallLaunch, SprinlerSpray, BombBlast, CatMove, CatSwipe, CatDrag, GameOver, ReadySetGo, SFXButton };
 public class SoundManager : MonoBehaviour
 {
     [System.Serializable]
@@ -35,6 +35,37 @@ public class SoundManager : MonoBehaviour
     private SoundFXClip[] soundFXList;
 
     public AudioSource soundFXSource;
+    private static SoundManager _instance;
+
+
+        public static SoundManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<SoundManager>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject();
+                    _instance = go.AddComponent<SoundManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake(){
+        if (Instance != this)
+        {
+            Destroy(this.gameObject);
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+    }
+
+
 
     public void Toggle(bool isOn, params int[] indexes)
     {
