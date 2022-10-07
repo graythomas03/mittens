@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] 
     private GameObject sprite;
+    [SerializeField]
+    private GameObject spriteHolder;
     private Animator anim;
 
     private bool dragEvent = false;
@@ -50,14 +52,16 @@ public class Player : MonoBehaviour
 
         if(dirVec != Vector3.zero) {
             // update palyer sprite rotation
-            sprite.transform.rotation.SetFromToRotation(_dirVec, dirVec);
+            
+            //SetFromToRotation(_dirVec, dirVec);
+            spriteHolder.transform.rotation = Quaternion.LookRotation(dirVec);
 
             anim.SetBool("moving", true);
         } else {
             anim.SetBool("moving", false);
         }
-
-        _rbody.velocity = _moveSpeed * _dirVec;
+    //Debug.Log("move: " + (_moveSpeed * dirVec) + ", " + tmp);
+        _rbody.velocity = _moveSpeed * dirVec;
 
         // check for swipe event
         _input.Player.Swipe.performed += ctx => swipeEvent = true;

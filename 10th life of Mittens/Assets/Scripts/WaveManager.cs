@@ -244,9 +244,19 @@ public class WaveManager : MonoBehaviour
         EndWave();
     }
 
+    public void GoalReached(){
+        if(gm.GetLife() < 9){
+            LoseWave();
+        }
+        else{
+            gm.AddPoints(10000);
+            gm.GameOver();
+        }
+    }
+
     public void LoseWave(){
         gm.LoseLife();
-        gm.AddPoints(-1000);
+        gm.AddPoints(-100);
         if(gm.GetLife() < 10){
             SpawnPlayer();
         }
@@ -280,8 +290,11 @@ public class WaveManager : MonoBehaviour
     }
 
     public void SpawnPlayer(){
-        if(player){
+        if(player && gm.GetLife() < 9){
             player.transform.position = startPos.transform.position;
+        }
+        else{
+            player.transform.position = new Vector3(player.transform.position.x, -10, player.transform.position.z);
         }
     }
 
