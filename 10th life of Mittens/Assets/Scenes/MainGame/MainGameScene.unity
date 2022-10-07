@@ -142,6 +142,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   iFrames: 0.5
+--- !u!1 &71849867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 167830477677253600, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+  m_PrefabInstance: {fileID: 1230981684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &102835271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,6 +1557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d5dbeb25a402f144bd640c9d1018177, type: 3}
+--- !u!1 &638797537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1398313100357789518, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+  m_PrefabInstance: {fileID: 1230981684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &727083902 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8179666996837025171, guid: cff315266fb85db449381d344903cb85, type: 3}
@@ -2352,10 +2362,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2954150684660249863, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954150684660249863, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954150684660249863, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954150684660249863, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954150684660249863, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961769699234564326, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 71849867}
     - target: {fileID: 3961769699234564326, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
       propertyPath: _moveSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3961769699234564326, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
+      propertyPath: spriteHolder
+      value: 
+      objectReference: {fileID: 638797537}
     - target: {fileID: 3961769699234564327, guid: 297615e51b2f6ec4685d5c851dc00529, type: 3}
       propertyPath: m_Name
       value: Player

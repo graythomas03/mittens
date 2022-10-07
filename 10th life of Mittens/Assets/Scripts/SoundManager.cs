@@ -102,7 +102,8 @@ public class SoundManager : MonoBehaviour
     {
         foreach(int i in indexes)
         {
-            if(i >= 0 && i < indexes.Length)
+            Debug.Log("music: " + i + " set to mute? " + !isOn);
+            if(i >= 0 && i < musicSources.Length)
             {
                 musicSources[i].ShouldBeMute = !isOn;
             }

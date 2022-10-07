@@ -89,6 +89,18 @@ public class GameManager : MonoBehaviour
         {
             // 9 lives mode
             currentLife++;
+            if(currentLife == 3){
+                SoundManager.Instance.Toggle(false, 0);
+                SoundManager.Instance.Toggle(true, 1);
+            }
+            else if(currentLife == 6){
+                SoundManager.Instance.Toggle(false, 1);
+                SoundManager.Instance.Toggle(true, 2);
+            }
+
+
+
+
             GameObject heartsPanel = inGameUI.transform.GetChild(0).gameObject;
 
             for (int i = 0; i < totalLives; i++)
@@ -101,8 +113,12 @@ public class GameManager : MonoBehaviour
                     // Heart corresponds to the current life lost
                     animator.SetTrigger("Dies");
                 }
-                else if (currentLife == 3 || currentLife == 6)
+                else if (currentLife == 3)
                 {
+                    // All hearts must proceed to next decay state
+                    animator.SetTrigger("Decays");
+                }
+                else if(currentLife == 6){
                     // All hearts must proceed to next decay state
                     animator.SetTrigger("Decays");
                 }
